@@ -36,7 +36,7 @@
   flex-basis: 0;
   transition: flex-basis 250ms ease-in-out;
   overflow-y: scroll;
-  
+
 }
 
 .statistics.show {

@@ -256,5 +256,13 @@ export const optionsBuilder = (builder: PanelOptionsEditorBuilder<PanelSettings>
         category: ['Tracing Drilldown'],
         defaultValue: DefaultSettings.drillDownLink,
       })
+
+      .addTextInput({
+        path: 'datasourceName',
+        name: 'Datasource Name',
+        category: ['Datasource'],
+        description: 'Datasource name will be used to make calls to other pannels in the dashboard.',
+        defaultValue: DefaultSettings.datasourceName,
+      })
   );
 };

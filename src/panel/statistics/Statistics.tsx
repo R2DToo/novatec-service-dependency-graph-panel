@@ -2,7 +2,7 @@ import React from 'react';
 import { NodeStatistics } from './NodeStatistics';
 import '../../css/novatec-service-dependency-graph-panel.css';
 import './Statistics.css';
-import { IntSelectionStatistics, TableContent } from 'types';
+import { IntSelectionStatistics, TableContent, SummaryTableContent } from 'types';
 import roundPercentageToDecimal from './utils/Utils';
 
 interface StatisticsProps {
@@ -14,6 +14,7 @@ interface StatisticsProps {
   showBaselines: boolean;
   receiving: TableContent[];
   sending: TableContent[];
+  //summaryTable: SummaryTableContent[];
 }
 
 export const Statistics: React.FC<StatisticsProps> = ({
@@ -25,19 +26,28 @@ export const Statistics: React.FC<StatisticsProps> = ({
   showBaselines,
   receiving,
   sending,
+  //summaryTable,
 }) => {
   var statisticsClass = 'statistics';
   var statistics = <div></div>;
   if (show) {
     statisticsClass = 'statistics show ';
     var drilldownLink = <div></div>;
-    if (resolvedDrillDownLink && resolvedDrillDownLink.length > 0 && currentType === 'INTERNAL') {
+    if (resolvedDrillDownLink && resolvedDrillDownLink.length > 0) {
       drilldownLink = (
         <a target="_blank" href={resolvedDrillDownLink}>
           <i className="fa fa-paper-plane-o margin"></i>
         </a>
       );
     }
+
+    // const summary =
+    //   typeof summaryTable !== 'undefined' ? (
+    //     <tr>
+    //       <td className="table--td--selection">Summary</td>
+    //       <td className="table--td--selection">{summaryTable}</td>
+    //     </tr>
+    //   ) : null;
 
     const requests =
       selectionStatistics.requests >= 0 ? (
@@ -97,25 +107,21 @@ export const Statistics: React.FC<StatisticsProps> = ({
           {drilldownLink}
         </div>
 
-        <div className="secondHeader--selection">Statistics</div>
+        <div className="secondHeader--selection">Summary</div>
         <table className="table--selection">
           <tr className="table--selection--head">
-            <th>Name</th>
+            <th>CI Attribute</th>
             <th className="table--th--selectionMedium">Value</th>
           </tr>
-          {requests}
-          {errors}
-          {errorRate}
-          {avgResponseTime}
-          {baseline}
+          {/* {summary} */}
         </table>
 
-        <NodeStatistics
+        {/* <NodeStatistics
           nodeList={receiving}
           noDataText="No incoming statistics available."
           title="Incoming Statistics"
         />
-        <NodeStatistics nodeList={sending} noDataText="No outgoing statistics available." title="Outgoing Statistics" />
+        <NodeStatistics nodeList={sending} noDataText="No outgoing statistics available." title="Outgoing Statistics" /> */}
       </div>
     );
   }

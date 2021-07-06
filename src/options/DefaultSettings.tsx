@@ -68,4 +68,5 @@ export const DefaultSettings: PanelSettings = {
 
   drillDownLink: '',
   timeFormat: 'm',
+  datasourceName: 'servicenow-optimiz-plugin',
 };

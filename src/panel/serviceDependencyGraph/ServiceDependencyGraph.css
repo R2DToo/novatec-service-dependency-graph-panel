@@ -14,7 +14,11 @@
 .zoom-button-container {
     position: absolute;
     top: 0;
-    right: 1rem;
+    left: 1rem;
     z-index: 99;
-  }
-  
+}
+
+.navbar-button {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
+}

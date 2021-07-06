@@ -16,8 +16,11 @@ import {
   IntGraphEdge,
   PanelSettings,
   IntSelectionStatistics,
+  AlertTableContent,
+  SummaryTableContent,
+  ChangeTableContent,
 } from 'types';
-import { TemplateSrv, getTemplateSrv } from '@grafana/runtime';
+import { TemplateSrv, getTemplateSrv, getDataSourceSrv } from '@grafana/runtime';
 import './ServiceDependencyGraph.css';
 
 interface PanelState {
@@ -54,6 +57,14 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
   initResize = true;
 
+  datasourceSrv: any;
+
+  settings: PanelSettings;
+
+  summary: SummaryTableContent[];
+  alerts: AlertTableContent[];
+  change: ChangeTableContent[];
+
   constructor(props: PanelState) {
     super(props);
 
@@ -71,6 +82,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
     this.ref = React.createRef();
     this.templateSrv = getTemplateSrv();
+    this.datasourceSrv = getDataSourceSrv();
   }
 
   componentDidMount() {
@@ -288,12 +300,26 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     this.state.cy.center();
   }
 
-  updateStatisticTable() {
+  async updateStatisticTable() {
     const selection = this.state.cy.$(':selected');
-
     if (selection.length === 1) {
+      this.selectionStatistics = {};
       const currentNode: NodeSingular = selection[0];
       this.selectionId = currentNode.id().toString();
+
+      const alertsTable: AlertTableContent[] = [];
+			const summaryTable: SummaryTableContent[] = [];
+			const changeTable: ChangeTableContent[] = [];
+
+      let dataSource = await this.datasourceSrv.get(this.state.settings.datasourceName);
+      let dataSourceData=await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
+      console.log(dataSourceData);
+      summaryTable.push({name:"Class",value:dataSourceData.classType});
+      summaryTable.push({name:"Environment",value:dataSourceData.environment});
+      summaryTable.push({name:"Support Group",value:dataSourceData.support_group});
+      summaryTable.push({name:"In Maintinance",value:dataSourceData.maintenance_schedule});
+      //this.summary = summaryTable;
+
       this.currentType = currentNode.data('type');
       const receiving: TableContent[] = [];
       const sending: TableContent[] = [];
@@ -305,8 +331,6 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       const errorCount = _.defaultTo(metrics.error_rate, -1);
       const duration = _.defaultTo(metrics.response_time, -1);
       const threshold = _.defaultTo(metrics.threshold, -1);
-
-      this.selectionStatistics = {};
 
       if (requestCount >= 0) {
         this.selectionStatistics.requests = Math.floor(requestCount);
@@ -413,6 +437,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
           showBaselines={this.getSettings(true).showBaselines}
           receiving={this.receiving}
           sending={this.sending}
+          //summaryTable={this.summary}
         />
       </div>
     );

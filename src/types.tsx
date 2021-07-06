@@ -13,6 +13,7 @@ export interface PanelSettings {
   drillDownLink: string;
   showBaselines: boolean;
   timeFormat: string;
+  datasourceName: string;
 }
 
 export interface DataMapping {
@@ -204,3 +205,20 @@ export interface DrawContext {
   yMaxLimit: number;
   sourcePoint: cytoscape.Position;
 }
+
+export interface AlertTableContent {
+  time: string;
+  id: string;
+  summary: string;
+  severity: string;
+};
+
+export interface SummaryTableContent {
+  name: string;
+  value: string;
+};
+
+export interface ChangeTableContent {
+  id: string;
+  summary: string;
+};

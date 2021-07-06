@@ -213,7 +213,7 @@ export class PanelController extends PureComponent<Props, PanelState> {
           >
             <ServiceDependencyGraph
               data={data}
-              zoom={1}
+              zoom={2}
               controller={this}
               animate={false}
               showStatistics={false}

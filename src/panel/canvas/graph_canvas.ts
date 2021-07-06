@@ -506,7 +506,9 @@ export default class CanvasDrawer {
       }
 
       // drawing the donut
-      this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
+      // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
+      //Making Donut larger
+      this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
 
       // drawing the baseline status
       const { showBaselines } = this.controller.getSettings(true);
@@ -527,27 +529,55 @@ export default class CanvasDrawer {
   }
 
   _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    const nodeId: string = node.id();
-    const iconMappings = this.controller.getSettings(true).icons;
+    // const nodeId: string = node.id();
+    // const iconMappings = this.controller.getSettings(true).icons;
 
-    const mapping = _.find(iconMappings, ({ pattern }) => {
-      try {
-        return new RegExp(pattern).test(nodeId);
-      } catch (error) {
-        return false;
-      }
-    });
+    // const mapping = _.find(iconMappings, ({ pattern }) => {
+    //   try {
+    //     return new RegExp(pattern).test(nodeId);
+    //   } catch (error) {
+    //     return false;
+    //   }
+    // });
 
-    if (mapping) {
-      const image = this._getAsset(mapping.filename, mapping.filename + '.png');
-      if (image != null) {
-        const cX = node.position().x;
-        const cY = node.position().y;
-        const iconSize = 16;
+    // if (mapping) {
+    //   const image = this._getAsset(mapping.filename, mapping.filename + '.png');
+    //   if (image != null) {
+    //     const cX = node.position().x;
+    //     const cY = node.position().y;
+    //     const iconSize = 16;
 
-        ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
-      }
+    //     ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
+    //   }
+    // }
+
+    // Start of new code
+    const pos = node.position();
+    const cX = pos.x;
+    const cY = pos.y;
+    //Changed from const size = 20;
+    // Makes font larger
+    const size = 20;
+
+    ctx.beginPath();
+    ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
+    ctx.fillStyle = 'white';
+    // Commented out to remove white line obstructing icon
+    //ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(cX, cY, 11.5, 0, 2 * Math.PI, false);
+    ctx.fillStyle = this.colors.background;
+    ctx.fill();
+
+    const nodeType = node.data('external_type');
+
+    const image = this._getImageAsset(nodeType);
+    if (image != null) {
+      ctx.drawImage(image, cX - size / 2, cY - size / 2, size, size);
     }
+
+    // End of new code
   }
 
   _drawNodeStatistics(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
@@ -563,7 +593,9 @@ export default class CanvasDrawer {
 
     if (requestCount >= 0) {
       const decimals = requestCount >= 1000 ? 1 : 0;
-      lines.push('Requests: ' + humanFormat(parseFloat(requestCount.toString()), { decimals }));
+      if (humanFormat(parseFloat(requestCount.toString()), { decimals }) > 0) {
+        lines.push('Alerts: ' + humanFormat(parseFloat(requestCount.toString()), { decimals }));
+      }
     }
     if (errorCount >= 0) {
       const decimals = errorCount >= 1000 ? 1 : 0;
@@ -576,11 +608,11 @@ export default class CanvasDrawer {
     }
 
     const pos = node.position();
-    const fontSize = 6;
+    const fontSize = 8;
     const cX = pos.x + this.donutRadius * 1.25;
     const cY = pos.y + fontSize / 2 - (fontSize / 2) * (lines.length - 1);
 
-    ctx.font = '6px Arial';
+    ctx.font = '8px Arial';
     ctx.fillStyle = this.colors.default;
     for (let i = 0; i < lines.length; i++) {
       ctx.fillText(lines[i], cX, cY + i * fontSize);
