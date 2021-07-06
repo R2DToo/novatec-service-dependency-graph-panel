@@ -67,6 +67,7 @@
 .table--selection {
   width: 99%;
   table-layout: fixed;
+  border: 2px solid rgb(40,107,199);
 }
 
 .table--selection th, .table--selection td {
@@ -109,4 +110,6 @@
   width: 100%;
 }
 
-
+.table--th, .table--td {
+  border: 2px solid rgb(40,107,199);
+}

@@ -220,11 +220,11 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     return elements;
   }
 
-  onSelectionChange() {
+  async onSelectionChange() {
     const selection = this.state.cy.$(':selected');
 
     if (selection.length === 1) {
-      this.updateStatisticTable();
+      await this.updateStatisticTable();
       this.setState({
         showStatistics: true,
       });
@@ -312,13 +312,14 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 			const changeTable: ChangeTableContent[] = [];
 
       let dataSource = await this.datasourceSrv.get(this.state.settings.datasourceName);
-      let dataSourceData=await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
-      console.log(dataSourceData);
+      let dataSourceData = await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
       summaryTable.push({name:"Class",value:dataSourceData.classType});
       summaryTable.push({name:"Environment",value:dataSourceData.environment});
       summaryTable.push({name:"Support Group",value:dataSourceData.support_group});
       summaryTable.push({name:"In Maintinance",value:dataSourceData.maintenance_schedule});
-      //this.summary = summaryTable;
+
+      this.summary = summaryTable;
+      console.log("Summary Table", this.summary);
 
       this.currentType = currentNode.data('type');
       const receiving: TableContent[] = [];
@@ -437,7 +438,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
           showBaselines={this.getSettings(true).showBaselines}
           receiving={this.receiving}
           sending={this.sending}
-          //summaryTable={this.summary}
+          summary={this.summary}
         />
       </div>
     );

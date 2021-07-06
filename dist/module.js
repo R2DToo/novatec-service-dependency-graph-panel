@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".service-dependency-graph-panel {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n\n.graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.service-dependency-graph {\n  position: relative;\n  flex-grow: 1;\n  min-width: 0; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  right: 1rem;\n  z-index: 99;\n  width: 35px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 250ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n\n.header--selection {\n  font-size: 1.25em;\n  text-align: center;\n  border-bottom: 2px solid #161719;\n  font-weight: 500;\n  color: #d8d9da; }\n\n.secondHeader--selection {\n  font-size: 1.2em;\n  text-align: center;\n  padding-top: 1.5rem;\n  padding-bottom: 0.5rem; }\n\n.no-data--selection {\n  color: #888888;\n  text-align: center; }\n\n.table--selection {\n  width: 99%;\n  table-layout: fixed; }\n\n.table--selection th, .table--selection td {\n  padding: 3px 5px; }\n\n.table--selection tr {\n  border-bottom: 2px solid #161719; }\n\n.table--td--selection {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.threshold--bad {\n  color: #f2495c; }\n\n.threshold--good {\n  color: #73bf69; }\n\n.table--th--selectionSmall {\n  width: 5.5rem; }\n\n.table--th--selectionMedium {\n  width: 8rem; }\n\n.table--selection--head {\n  background-color: #28282a;\n  border-top: 2px solid #161719;\n  color: #33b5e5; }\n\n.width-100 {\n  width: 100%; }\n", "",{"version":3,"sources":["webpack://./css/novatec-service-dependency-graph-panel.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB,EAAE;;AAE1B;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,kBAAkB;EAClB,YAAY;EACZ,YAAY,EAAE;;AAEhB;EACE,WAAW;EACX,YAAY;EACZ,gBAAgB,EAAE;;AAEpB;EACE,kBAAkB;EAClB,MAAM;EACN,WAAW;EACX,WAAW;EACX,WAAW,EAAE;;AAEf;EACE,aAAa;EACb,wCAAwC;EACxC,kBAAkB,EAAE;;AAEtB;EACE,iBAAiB;EACjB,kBAAkB,EAAE;;AAEtB;EACE,iBAAiB;EACjB,kBAAkB;EAClB,gCAAgC;EAChC,gBAAgB;EAChB,cAAc,EAAE;;AAElB;EACE,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB;EACnB,sBAAsB,EAAE;;AAE1B;EACE,cAAc;EACd,kBAAkB,EAAE;;AAEtB;EACE,UAAU;EACV,mBAAmB,EAAE;;AAEvB;EACE,gBAAgB,EAAE;;AAEpB;EACE,gCAAgC,EAAE;;AAEpC;EACE,gBAAgB;EAChB,uBAAuB;EACvB,mBAAmB,EAAE;;AAEvB;EACE,cAAc,EAAE;;AAElB;EACE,cAAc,EAAE;;AAElB;EACE,aAAa,EAAE;;AAEjB;EACE,WAAW,EAAE;;AAEf;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,cAAc,EAAE;;AAElB;EACE,WAAW,EAAE","sourcesContent":[".service-dependency-graph-panel {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n\n.graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.service-dependency-graph {\n  position: relative;\n  flex-grow: 1;\n  min-width: 0; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  right: 1rem;\n  z-index: 99;\n  width: 35px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 250ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n\n.header--selection {\n  font-size: 1.25em;\n  text-align: center;\n  border-bottom: 2px solid #161719;\n  font-weight: 500;\n  color: #d8d9da; }\n\n.secondHeader--selection {\n  font-size: 1.2em;\n  text-align: center;\n  padding-top: 1.5rem;\n  padding-bottom: 0.5rem; }\n\n.no-data--selection {\n  color: #888888;\n  text-align: center; }\n\n.table--selection {\n  width: 99%;\n  table-layout: fixed; }\n\n.table--selection th, .table--selection td {\n  padding: 3px 5px; }\n\n.table--selection tr {\n  border-bottom: 2px solid #161719; }\n\n.table--td--selection {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.threshold--bad {\n  color: #f2495c; }\n\n.threshold--good {\n  color: #73bf69; }\n\n.table--th--selectionSmall {\n  width: 5.5rem; }\n\n.table--th--selectionMedium {\n  width: 8rem; }\n\n.table--selection--head {\n  background-color: #28282a;\n  border-top: 2px solid #161719;\n  color: #33b5e5; }\n\n.width-100 {\n  width: 100%; }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".service-dependency-graph-panel {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n\n.graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.service-dependency-graph {\n  position: relative;\n  flex-grow: 1;\n  min-width: 0; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  right: 1rem;\n  z-index: 99;\n  width: 35px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 250ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n\n.header--selection {\n  font-size: 1.25em;\n  text-align: center;\n  border-bottom: 2px solid #161719;\n  font-weight: 500;\n  color: #d8d9da; }\n\n.secondHeader--selection {\n  font-size: 1.2em;\n  text-align: center;\n  padding-top: 1.5rem;\n  padding-bottom: 0.5rem; }\n\n.no-data--selection {\n  color: #888888;\n  text-align: center; }\n\n.table--selection {\n  width: 99%;\n  table-layout: fixed;\n  border: 2px solid #286bc7; }\n\n.table--selection th, .table--selection td {\n  padding: 3px 5px; }\n\n.table--selection tr {\n  border-bottom: 2px solid #161719; }\n\n.table--td--selection {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.threshold--bad {\n  color: #f2495c; }\n\n.threshold--good {\n  color: #73bf69; }\n\n.table--th--selectionSmall {\n  width: 5.5rem; }\n\n.table--th--selectionMedium {\n  width: 8rem; }\n\n.table--selection--head {\n  background-color: #28282a;\n  border-top: 2px solid #161719;\n  color: #33b5e5; }\n\n.width-100 {\n  width: 100%; }\n\n.table--th, .table--td {\n  border: 2px solid #286bc7; }\n", "",{"version":3,"sources":["webpack://./css/novatec-service-dependency-graph-panel.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB,EAAE;;AAE1B;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,kBAAkB;EAClB,YAAY;EACZ,YAAY,EAAE;;AAEhB;EACE,WAAW;EACX,YAAY;EACZ,gBAAgB,EAAE;;AAEpB;EACE,kBAAkB;EAClB,MAAM;EACN,WAAW;EACX,WAAW;EACX,WAAW,EAAE;;AAEf;EACE,aAAa;EACb,wCAAwC;EACxC,kBAAkB,EAAE;;AAEtB;EACE,iBAAiB;EACjB,kBAAkB,EAAE;;AAEtB;EACE,iBAAiB;EACjB,kBAAkB;EAClB,gCAAgC;EAChC,gBAAgB;EAChB,cAAc,EAAE;;AAElB;EACE,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB;EACnB,sBAAsB,EAAE;;AAE1B;EACE,cAAc;EACd,kBAAkB,EAAE;;AAEtB;EACE,UAAU;EACV,mBAAmB;EACnB,yBAAyB,EAAE;;AAE7B;EACE,gBAAgB,EAAE;;AAEpB;EACE,gCAAgC,EAAE;;AAEpC;EACE,gBAAgB;EAChB,uBAAuB;EACvB,mBAAmB,EAAE;;AAEvB;EACE,cAAc,EAAE;;AAElB;EACE,cAAc,EAAE;;AAElB;EACE,aAAa,EAAE;;AAEjB;EACE,WAAW,EAAE;;AAEf;EACE,yBAAyB;EACzB,6BAA6B;EAC7B,cAAc,EAAE;;AAElB;EACE,WAAW,EAAE;;AAEf;EACE,yBAAyB,EAAE","sourcesContent":[".service-dependency-graph-panel {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column; }\n\n.graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.service-dependency-graph {\n  position: relative;\n  flex-grow: 1;\n  min-width: 0; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  right: 1rem;\n  z-index: 99;\n  width: 35px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 250ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n\n.header--selection {\n  font-size: 1.25em;\n  text-align: center;\n  border-bottom: 2px solid #161719;\n  font-weight: 500;\n  color: #d8d9da; }\n\n.secondHeader--selection {\n  font-size: 1.2em;\n  text-align: center;\n  padding-top: 1.5rem;\n  padding-bottom: 0.5rem; }\n\n.no-data--selection {\n  color: #888888;\n  text-align: center; }\n\n.table--selection {\n  width: 99%;\n  table-layout: fixed;\n  border: 2px solid #286bc7; }\n\n.table--selection th, .table--selection td {\n  padding: 3px 5px; }\n\n.table--selection tr {\n  border-bottom: 2px solid #161719; }\n\n.table--td--selection {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.threshold--bad {\n  color: #f2495c; }\n\n.threshold--good {\n  color: #73bf69; }\n\n.table--th--selectionSmall {\n  width: 5.5rem; }\n\n.table--th--selectionMedium {\n  width: 8rem; }\n\n.table--selection--head {\n  background-color: #28282a;\n  border-top: 2px solid #161719;\n  color: #33b5e5; }\n\n.width-100 {\n  width: 100%; }\n\n.table--th, .table--td {\n  border: 2px solid #286bc7; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -45772,18 +45772,42 @@ function (_super) {
   };
 
   ServiceDependencyGraph.prototype.onSelectionChange = function () {
-    var selection = this.state.cy.$(':selected');
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+      var selection;
+      return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            selection = this.state.cy.$(':selected');
+            if (!(selection.length === 1)) return [3
+            /*break*/
+            , 2];
+            return [4
+            /*yield*/
+            , this.updateStatisticTable()];
 
-    if (selection.length === 1) {
-      this.updateStatisticTable();
-      this.setState({
-        showStatistics: true
+          case 1:
+            _a.sent();
+
+            this.setState({
+              showStatistics: true
+            });
+            return [3
+            /*break*/
+            , 3];
+
+          case 2:
+            this.setState({
+              showStatistics: false
+            });
+            _a.label = 3;
+
+          case 3:
+            return [2
+            /*return*/
+            ];
+        }
       });
-    } else {
-      this.setState({
-        showStatistics: false
-      });
-    }
+    });
   };
 
   ServiceDependencyGraph.prototype.getSettings = function (resolveVariables) {
@@ -45887,7 +45911,6 @@ function (_super) {
 
           case 2:
             dataSourceData = _a.sent();
-            console.log(dataSourceData);
             summaryTable.push({
               name: "Class",
               value: dataSourceData.classType
@@ -45903,8 +45926,9 @@ function (_super) {
             summaryTable.push({
               name: "In Maintinance",
               value: dataSourceData.maintenance_schedule
-            }); //this.summary = summaryTable;
-
+            });
+            this.summary = summaryTable;
+            console.log("Summary Table", this.summary);
             this.currentType = currentNode.data('type');
             receiving = [];
             sending = [];
@@ -46058,7 +46082,8 @@ function (_super) {
       currentType: this.currentType,
       showBaselines: this.getSettings(true).showBaselines,
       receiving: this.receiving,
-      sending: this.sending
+      sending: this.sending,
+      summary: this.summary
     }));
   };
 
@@ -46111,8 +46136,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_novatec_service_dependency_graph_panel_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/novatec-service-dependency-graph-panel.css */ "./css/novatec-service-dependency-graph-panel.css");
 /* harmony import */ var _Statistics_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Statistics.css */ "./panel/statistics/Statistics.css");
-/* harmony import */ var _utils_Utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/Utils */ "./panel/statistics/utils/Utils.ts");
-
 
 
 
@@ -46124,7 +46147,8 @@ var Statistics = function Statistics(_a) {
       currentType = _a.currentType,
       showBaselines = _a.showBaselines,
       receiving = _a.receiving,
-      sending = _a.sending;
+      sending = _a.sending,
+      summary = _a.summary;
   var statisticsClass = 'statistics';
   var statistics = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
@@ -46139,97 +46163,36 @@ var Statistics = function Statistics(_a) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fa fa-paper-plane-o margin"
       }));
-    } // const summary =
-    //   typeof summaryTable !== 'undefined' ? (
-    //     <tr>
-    //       <td className="table--td--selection">Summary</td>
-    //       <td className="table--td--selection">{summaryTable}</td>
-    //     </tr>
-    //   ) : null;
+    }
 
-
-    var requests = selectionStatistics.requests >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, "Requests"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, selectionStatistics.requests)) : null;
-    var errors = selectionStatistics.errors >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, "Errors"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, selectionStatistics.errors)) : null;
-    var errorRate = selectionStatistics.requests >= 0 && selectionStatistics.errors >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-      "ng-show": ""
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, "Error Rate"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, Object(_utils_Utils__WEBPACK_IMPORTED_MODULE_3__["default"])(2, (100 / selectionStatistics.requests * selectionStatistics.errors).toString()))) : null;
-    var avgResponseTime = selectionStatistics.responseTime >= 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, "Avg. Response Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, selectionStatistics.responseTime, " ms")) : null;
-    var threshold = selectionStatistics.thresholdViolation ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection threshold--bad"
-    }, "Bad (", '>', " ", selectionStatistics.threshold, "ms)") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection threshold--good"
-    }, " Good (<= ", selectionStatistics.threshold, "ms) ");
-    var baseline = showBaselines && selectionStatistics.threshold ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-      className: "table--td--selection"
-    }, "Response Time Health (Upper Baseline)"), threshold) : null;
+    var summaryTd = summary ? summary.map(function (value) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "table--td--selection table--td"
+      }, value.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+        className: "table--td--selection table--td"
+      }, value.value));
+    }) : null;
     statistics = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "statistics"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "header--selection"
-    }, selectionId, drilldownLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, selectionId), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "secondHeader--selection"
-    }, "Summary"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    }, drilldownLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
       className: "table--selection"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       className: "table--selection--head"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "CI Attribute"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-      className: "table--th--selectionMedium"
-    }, "Value"))));
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      className: "table--th table--th--selectionMedium"
+    }, "CI Attribute"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      className: "table--th"
+    }, "Value")), summaryTd));
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: statisticsClass
   }, statistics);
 };
-
-/***/ }),
-
-/***/ "./panel/statistics/utils/Utils.ts":
-/*!*****************************************!*\
-  !*** ./panel/statistics/utils/Utils.ts ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function roundPercentageToDecimal(decimal, value) {
-  if (value !== '-') {
-    var valueDecimals = _getDecimalsOf(parseFloat(value));
-
-    if (valueDecimals > decimal) {
-      value = parseFloat(value).toFixed(decimal) + '%';
-    }
-  }
-
-  return value;
-}
-
-function _getDecimalsOf(value) {
-  if (Math.floor(value) !== value) {
-    return value.toString().split('.')[1].length || 0;
-  }
-
-  return 0;
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (roundPercentageToDecimal);
 
 /***/ }),
 
