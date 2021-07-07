@@ -45017,87 +45017,13 @@ function () {
     var type = node.data('type');
     var metrics = node.data('metrics');
 
-    if (type === _types__WEBPACK_IMPORTED_MODULE_3__["EnGraphNodeType"].INTERNAL) {
-      var requestCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.rate, -1);
-
-      var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0);
-
-      var responseTime = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.response_time, -1);
-
-      var threshold = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.threshold, -1);
-
-      var unknownPct;
-      var errorPct;
-      var healthyPct;
-
-      if (requestCount < 0) {
-        healthyPct = 0;
-        errorPct = 0;
-        unknownPct = 1;
-      } else {
-        if (errorCount <= 0) {
-          errorPct = 0.0;
-        } else {
-          errorPct = 1.0 / requestCount * errorCount;
-        }
-
-        healthyPct = 1.0 - errorPct;
-        unknownPct = 0;
-      } // drawing the donut
-      // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
-      //Making Donut larger
-
-
-      this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // drawing the baseline status
-
-
-      var showBaselines = this.controller.getSettings(true).showBaselines;
-
-      if (showBaselines && responseTime >= 0 && threshold >= 0) {
-        var thresholdViolation = threshold < responseTime;
-
-        this._drawThresholdStroke(ctx, node, thresholdViolation, 15, 5, 0.5);
-      }
-
-      this._drawServiceIcon(ctx, node);
-    } else {
-      this._drawExternalService(ctx, node);
-    } // draw statistics
-
-
-    if (cy.zoom() > 1) {
-      this._drawNodeStatistics(ctx, node);
-    }
-  };
-
-  CanvasDrawer.prototype._drawServiceIcon = function (ctx, node) {
-    // const nodeId: string = node.id();
-    // const iconMappings = this.controller.getSettings(true).icons;
-    // const mapping = _.find(iconMappings, ({ pattern }) => {
-    //   try {
-    //     return new RegExp(pattern).test(nodeId);
-    //   } catch (error) {
-    //     return false;
-    //   }
-    // });
-    // if (mapping) {
-    //   const image = this._getAsset(mapping.filename, mapping.filename + '.png');
-    //   if (image != null) {
-    //     const cX = node.position().x;
-    //     const cY = node.position().y;
-    //     const iconSize = 30;
-    //     ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
-    //   }
-    // }
-    //This is the code which adds colors around the internal nodes
-    // Start of new code
-    var metrics = node.data('metrics');
-
     var requestCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.rate, -1);
 
-    var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0); //const responseTime = _.defaultTo(metrics.response_time, -1);
-    //const threshold = _.defaultTo(metrics.threshold, -1);
+    var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0);
 
+    var responseTime = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.response_time, -1);
+
+    var threshold = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.threshold, -1);
 
     var unknownPct;
     var errorPct;
@@ -45117,12 +45043,35 @@ function () {
       healthyPct = 1.0 - errorPct;
       unknownPct = 0;
     } // drawing the donut
+    // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
+    //Making Donut larger
 
 
-    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // End of new code
+    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // drawing the baseline status
+
+
+    var showBaselines = this.controller.getSettings(true).showBaselines;
+
+    if (showBaselines && responseTime >= 0 && threshold >= 0) {
+      var thresholdViolation = threshold < responseTime;
+
+      this._drawThresholdStroke(ctx, node, thresholdViolation, 15, 5, 0.5);
+    }
+
+    if (type === _types__WEBPACK_IMPORTED_MODULE_3__["EnGraphNodeType"].INTERNAL) {
+      this._drawServiceIcon(ctx, node);
+    } else {
+      this._drawExternalService(ctx, node);
+    } // draw statistics
+
+
+    if (cy.zoom() > 1) {
+      this._drawNodeStatistics(ctx, node);
+    }
+  };
+
+  CanvasDrawer.prototype._drawServiceIcon = function (ctx, node) {
     // Start of new code
-
-
     var cX = node.position().x;
     var cY = node.position().y; //Changed from const size = 20;
     // Makes font larger
@@ -45186,7 +45135,7 @@ function () {
     ctx.fillStyle = this.colors.defaultText;
 
     for (var i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], cX, cY + i * fontSize);
+      ctx.fillText(lines[i], cX + 10, cY + i * fontSize);
     }
   };
 
@@ -45226,39 +45175,6 @@ function () {
   };
 
   CanvasDrawer.prototype._drawExternalService = function (ctx, node) {
-    //This is the code which adds colors around the external nodes
-    // Start of new code
-    var metrics = node.data('metrics');
-
-    var requestCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.rate, -1);
-
-    var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0); //const responseTime = _.defaultTo(metrics.response_time, -1);
-    //const threshold = _.defaultTo(metrics.threshold, -1);
-
-
-    var unknownPct;
-    var errorPct;
-    var healthyPct;
-
-    if (requestCount < 0) {
-      healthyPct = 0;
-      errorPct = 0;
-      unknownPct = 1;
-    } else {
-      if (errorCount <= 0) {
-        errorPct = 0.0;
-      } else {
-        errorPct = 1.0 / requestCount * errorCount;
-      }
-
-      healthyPct = 1.0 - errorPct;
-      unknownPct = 0;
-    } // drawing the donut
-
-
-    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // End of new code
-
-
     var pos = node.position();
     var cX = pos.x;
     var cY = pos.y;
@@ -45304,13 +45220,13 @@ function () {
       ctx.fillStyle = this.colors["default"];
     } else {
       ctx.fillStyle = '#FF7383';
-    }
+    } //ctx.globalAlpha = 0;
+    //ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
+    //ctx.globalAlpha = 1;
 
-    ctx.globalAlpha = 0;
-    ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
-    ctx.globalAlpha = 1;
+
     ctx.fillStyle = this.colors.defaultText;
-    ctx.fillText(label, xPos, yPos);
+    ctx.fillText(label, xPos, yPos + 12);
   };
 
   CanvasDrawer.prototype._drawDebugInformation = function () {

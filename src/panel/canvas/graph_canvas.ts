@@ -485,88 +485,14 @@ export default class CanvasDrawer {
     const type = node.data('type');
     const metrics: IntGraphMetrics = node.data('metrics');
 
-    if (type === EnGraphNodeType.INTERNAL) {
-      const requestCount = _.defaultTo(metrics.rate, -1);
-      const errorCount = _.defaultTo(metrics.error_rate, 0);
-      const responseTime = _.defaultTo(metrics.response_time, -1);
-      const threshold = _.defaultTo(metrics.threshold, -1);
-
-      var unknownPct;
-      var errorPct;
-      var healthyPct;
-      if (requestCount < 0) {
-        healthyPct = 0;
-        errorPct = 0;
-        unknownPct = 1;
-      } else {
-        if (errorCount <= 0) {
-          errorPct = 0.0;
-        } else {
-          errorPct = (1.0 / requestCount) * errorCount;
-        }
-        healthyPct = 1.0 - errorPct;
-        unknownPct = 0;
-      }
-
-      // drawing the donut
-      // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
-      //Making Donut larger
-      this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
-
-      // drawing the baseline status
-      const { showBaselines } = this.controller.getSettings(true);
-      if (showBaselines && responseTime >= 0 && threshold >= 0) {
-        const thresholdViolation = threshold < responseTime;
-
-        this._drawThresholdStroke(ctx, node, thresholdViolation, 15, 5, 0.5);
-      }
-      this._drawServiceIcon(ctx, node);
-    } else {
-      this._drawExternalService(ctx, node);
-    }
-
-    // draw statistics
-    if (cy.zoom() > 1) {
-      this._drawNodeStatistics(ctx, node);
-    }
-  }
-
-  _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    // const nodeId: string = node.id();
-    // const iconMappings = this.controller.getSettings(true).icons;
-
-    // const mapping = _.find(iconMappings, ({ pattern }) => {
-    //   try {
-    //     return new RegExp(pattern).test(nodeId);
-    //   } catch (error) {
-    //     return false;
-    //   }
-    // });
-
-    // if (mapping) {
-    //   const image = this._getAsset(mapping.filename, mapping.filename + '.png');
-    //   if (image != null) {
-    //     const cX = node.position().x;
-    //     const cY = node.position().y;
-    //     const iconSize = 30;
-
-    //     ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
-    //   }
-    // }
-
-    //This is the code which adds colors around the internal nodes
-    // Start of new code
-    const metrics: IntGraphMetrics = node.data('metrics');
-
     const requestCount = _.defaultTo(metrics.rate, -1);
     const errorCount = _.defaultTo(metrics.error_rate, 0);
-    //const responseTime = _.defaultTo(metrics.response_time, -1);
-    //const threshold = _.defaultTo(metrics.threshold, -1);
+    const responseTime = _.defaultTo(metrics.response_time, -1);
+    const threshold = _.defaultTo(metrics.threshold, -1);
 
     var unknownPct;
     var errorPct;
     var healthyPct;
-
     if (requestCount < 0) {
       healthyPct = 0;
       errorPct = 0;
@@ -582,10 +508,31 @@ export default class CanvasDrawer {
     }
 
     // drawing the donut
+    // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
+    //Making Donut larger
     this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
 
-    // End of new code
+    // drawing the baseline status
+    const { showBaselines } = this.controller.getSettings(true);
+    if (showBaselines && responseTime >= 0 && threshold >= 0) {
+      const thresholdViolation = threshold < responseTime;
 
+      this._drawThresholdStroke(ctx, node, thresholdViolation, 15, 5, 0.5);
+    }
+
+    if (type === EnGraphNodeType.INTERNAL) {
+      this._drawServiceIcon(ctx, node);
+    } else {
+      this._drawExternalService(ctx, node);
+    }
+
+    // draw statistics
+    if (cy.zoom() > 1) {
+      this._drawNodeStatistics(ctx, node);
+    }
+  }
+
+  _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
     // Start of new code
     const cX = node.position().x;
     const cY = node.position().y;
@@ -638,7 +585,7 @@ export default class CanvasDrawer {
     ctx.font = '8px Arial';
     ctx.fillStyle = this.colors.defaultText;
     for (let i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], cX, cY + i * fontSize);
+      ctx.fillText(lines[i], cX + 10, cY + i * fontSize);
     }
   }
 
@@ -689,38 +636,6 @@ export default class CanvasDrawer {
   }
 
   _drawExternalService(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    //This is the code which adds colors around the external nodes
-    // Start of new code
-    const metrics: IntGraphMetrics = node.data('metrics');
-
-    const requestCount = _.defaultTo(metrics.rate, -1);
-    const errorCount = _.defaultTo(metrics.error_rate, 0);
-    //const responseTime = _.defaultTo(metrics.response_time, -1);
-    //const threshold = _.defaultTo(metrics.threshold, -1);
-
-    var unknownPct;
-    var errorPct;
-    var healthyPct;
-
-    if (requestCount < 0) {
-      healthyPct = 0;
-      errorPct = 0;
-      unknownPct = 1;
-    } else {
-      if (errorCount <= 0) {
-        errorPct = 0.0;
-      } else {
-        errorPct = (1.0 / requestCount) * errorCount;
-      }
-      healthyPct = 1.0 - errorPct;
-      unknownPct = 0;
-    }
-
-    // drawing the donut
-    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
-
-    // End of new code
-
     const pos = node.position();
     const cX = pos.x;
     const cY = pos.y;
@@ -771,12 +686,12 @@ export default class CanvasDrawer {
     } else {
       ctx.fillStyle = '#FF7383';
     }
-    ctx.globalAlpha = 0;
-    ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
-    ctx.globalAlpha = 1;
+    //ctx.globalAlpha = 0;
+    //ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
+    //ctx.globalAlpha = 1;
 
     ctx.fillStyle = this.colors.defaultText;
-    ctx.fillText(label, xPos, yPos);
+    ctx.fillText(label, xPos, yPos + 12);
   }
 
   _drawDebugInformation() {
