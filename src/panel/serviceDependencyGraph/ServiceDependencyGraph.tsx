@@ -117,6 +117,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
     cy.on('render cyCanvas.resize', () => {
       graphCanvas.repaint(true);
+      console.log("render resize");
     });
     cy.on('select', 'node', () => this.onSelectionChange());
     cy.on('unselect', 'node', () => this.onSelectionChange());
@@ -332,6 +333,11 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       const errorCount = _.defaultTo(metrics.error_rate, -1);
       const duration = _.defaultTo(metrics.response_time, -1);
       const threshold = _.defaultTo(metrics.threshold, -1);
+
+      //var requestCount = 1;
+      // var target = { selectedAlertStateList: { value: 'All' }, selectedAlertTypeList: { value: 'None' }, sysparam_query: `cmdb_ci.name=${this.selectionId}` };
+      // var alertData = await dataSource.snowConnection.getAlerts(target, 0, 0, {});
+      // console.log("Alert: ", alertData);
 
       if (requestCount >= 0) {
         this.selectionStatistics.requests = Math.floor(requestCount);

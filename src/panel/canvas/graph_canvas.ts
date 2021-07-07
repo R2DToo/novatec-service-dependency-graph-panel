@@ -694,13 +694,13 @@ export default class CanvasDrawer {
     let label: string = node.id();
     const labelPadding = 1;
 
-    if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
-      if (label.length > 20) {
-        label = label.substr(0, 7) + '...' + label.slice(-7);
-      }
-    }
+    // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
+    //   if (label.length > 20) {
+    //     label = label.substr(0, 7) + '...' + label.slice(-7);
+    //   }
+    // }
 
-    ctx.font = '6px Arial';
+    ctx.font = '10px Arial';
 
     const labelWidth = ctx.measureText(label).width;
     const xPos = pos.x - labelWidth / 2;
@@ -751,7 +751,6 @@ export default class CanvasDrawer {
     ctx.closePath();
     ctx.fillStyle = 'white';
     ctx.fill();
-
     const { healthyColor, dangerColor, noDataColor } = this.controller.getSettings(true).style;
     const colors = [dangerColor, noDataColor, healthyColor];
     for (let i = 0; i < percentages.length; i++) {

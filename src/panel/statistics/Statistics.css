@@ -6,10 +6,18 @@
     flex-basis: 0;
     transition: flex-basis 500ms ease-in-out;
     overflow-y: scroll;
-    
+
   }
-  
+
   .statistics.show {
+    position: absolute;
     flex-basis: 30rem;
     padding-left: 0.5%;
+    height: 250px !important;
+    width: 375px !important;
+    right: 0;
+    z-index: 999;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
   }

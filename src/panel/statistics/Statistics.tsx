@@ -31,7 +31,7 @@ export const Statistics: React.FC<StatisticsProps> = ({
   var statisticsClass = 'statistics';
   var statistics = <div></div>;
   if (show) {
-    statisticsClass = 'statistics show ';
+    statisticsClass = 'statistics show';
     var drilldownLink = <div></div>;
     if (resolvedDrillDownLink && resolvedDrillDownLink.length > 0) {
       drilldownLink = (

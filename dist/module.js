@@ -235,7 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".margin {\n  margin: 10px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 500ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n", "",{"version":3,"sources":["webpack://./panel/statistics/Statistics.css"],"names":[],"mappings":"AAAA;EACE,YAAY,EAAE;;AAEhB;EACE,aAAa;EACb,wCAAwC;EACxC,kBAAkB,EAAE;;AAEtB;EACE,iBAAiB;EACjB,kBAAkB,EAAE","sourcesContent":[".margin {\n  margin: 10px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 500ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  flex-basis: 30rem;\n  padding-left: 0.5%; }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".margin {\n  margin: 10px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 500ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  position: absolute;\n  flex-basis: 30rem;\n  padding-left: 0.5%;\n  height: 250px !important;\n  width: 375px !important;\n  right: 0;\n  z-index: 999;\n  backdrop-filter: blur(4px);\n  -webkit-backdrop-filter: blur(4px); }\n", "",{"version":3,"sources":["webpack://./panel/statistics/Statistics.css"],"names":[],"mappings":"AAAA;EACE,YAAY,EAAE;;AAEhB;EACE,aAAa;EACb,wCAAwC;EACxC,kBAAkB,EAAE;;AAEtB;EACE,kBAAkB;EAClB,iBAAiB;EACjB,kBAAkB;EAClB,wBAAwB;EACxB,uBAAuB;EACvB,QAAQ;EACR,YAAY;EACZ,0BAA0B;EAC1B,kCAAkC,EAAE","sourcesContent":[".margin {\n  margin: 10px; }\n\n.statistics {\n  flex-basis: 0;\n  transition: flex-basis 500ms ease-in-out;\n  overflow-y: scroll; }\n\n.statistics.show {\n  position: absolute;\n  flex-basis: 30rem;\n  padding-left: 0.5%;\n  height: 250px !important;\n  width: 375px !important;\n  right: 0;\n  z-index: 999;\n  backdrop-filter: blur(4px);\n  -webkit-backdrop-filter: blur(4px); }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -45224,15 +45224,13 @@ function () {
   CanvasDrawer.prototype._drawNodeLabel = function (ctx, node) {
     var pos = node.position();
     var label = node.id();
-    var labelPadding = 1;
+    var labelPadding = 1; // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
+    //   if (label.length > 20) {
+    //     label = label.substr(0, 7) + '...' + label.slice(-7);
+    //   }
+    // }
 
-    if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
-      if (label.length > 20) {
-        label = label.substr(0, 7) + '...' + label.slice(-7);
-      }
-    }
-
-    ctx.font = '6px Arial';
+    ctx.font = '10px Arial';
     var labelWidth = ctx.measureText(label).width;
     var xPos = pos.x - labelWidth / 2;
     var yPos = pos.y + node.height() * 0.8;
@@ -45651,6 +45649,7 @@ function (_super) {
     }));
     cy.on('render cyCanvas.resize', function () {
       graphCanvas.repaint(true);
+      console.log("render resize");
     });
     cy.on('select', 'node', function () {
       return _this.onSelectionChange();
@@ -45937,7 +45936,10 @@ function (_super) {
             requestCount = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.rate, -1);
             errorCount = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.error_rate, -1);
             duration = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.response_time, -1);
-            threshold = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.threshold, -1);
+            threshold = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.threshold, -1); //var requestCount = 1;
+            // var target = { selectedAlertStateList: { value: 'All' }, selectedAlertTypeList: { value: 'None' }, sysparam_query: `cmdb_ci.name=${this.selectionId}` };
+            // var alertData = await dataSource.snowConnection.getAlerts(target, 0, 0, {});
+            // console.log("Alert: ", alertData);
 
             if (requestCount >= 0) {
               this.selectionStatistics.requests = Math.floor(requestCount);
@@ -46153,7 +46155,7 @@ var Statistics = function Statistics(_a) {
   var statistics = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
   if (show) {
-    statisticsClass = 'statistics show ';
+    statisticsClass = 'statistics show';
     var drilldownLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
 
     if (resolvedDrillDownLink && resolvedDrillDownLink.length > 0) {
