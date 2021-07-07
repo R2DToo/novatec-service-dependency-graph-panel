@@ -45198,8 +45198,8 @@ function () {
 
   CanvasDrawer.prototype._drawNodeLabel = function (ctx, node) {
     var pos = node.position();
-    var label = node.id();
-    var labelPadding = 1; // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
+    var label = node.id(); //const labelPadding = 1;
+    // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
     //   if (label.length > 20) {
     //     label = label.substr(0, 7) + '...' + label.slice(-7);
     //   }

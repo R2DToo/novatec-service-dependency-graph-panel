@@ -662,7 +662,7 @@ export default class CanvasDrawer {
   _drawNodeLabel(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
     const pos = node.position();
     let label: string = node.id();
-    const labelPadding = 1;
+    //const labelPadding = 1;
 
     // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
     //   if (label.length > 20) {
