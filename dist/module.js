@@ -45888,7 +45888,7 @@ function (_super) {
 
   ServiceDependencyGraph.prototype.updateStatisticTable = function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var selection, currentNode, alertsTable, summaryTable, changeTable, dataSource, dataSourceData, receiving, sending, edges, metrics, requestCount, errorCount, duration, threshold, i, actualEdge, sendingCheck, node, sendingObject, edgeMetrics, response_time, rate, error_rate;
+      var selection, currentNode, summaryTable, dataSource, dataSourceData, receiving, sending, edges, metrics, requestCount, errorCount, duration, threshold, i, actualEdge, sendingCheck, node, sendingObject, edgeMetrics, response_time, rate, error_rate;
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -45899,9 +45899,7 @@ function (_super) {
             this.selectionStatistics = {};
             currentNode = selection[0];
             this.selectionId = currentNode.id().toString();
-            alertsTable = [];
             summaryTable = [];
-            changeTable = [];
             return [4
             /*yield*/
             , this.datasourceSrv.get(this.state.settings.datasourceName)];
@@ -46142,6 +46140,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_novatec_service_dependency_graph_panel_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/novatec-service-dependency-graph-panel.css */ "./css/novatec-service-dependency-graph-panel.css");
 /* harmony import */ var _Statistics_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Statistics.css */ "./panel/statistics/Statistics.css");
+ //import { NodeStatistics } from './NodeStatistics';
 
 
 

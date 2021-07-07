@@ -310,9 +310,9 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       const currentNode: NodeSingular = selection[0];
       this.selectionId = currentNode.id().toString();
 
-      const alertsTable: AlertTableContent[] = [];
+      //const alertsTable: AlertTableContent[] = [];
 			const summaryTable: SummaryTableContent[] = [];
-			const changeTable: ChangeTableContent[] = [];
+			//const changeTable: ChangeTableContent[] = [];
 
       let dataSource = await this.datasourceSrv.get(this.state.settings.datasourceName);
       let dataSourceData = await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
