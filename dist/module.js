@@ -45206,13 +45206,13 @@ function () {
     var pos = node.position();
     var cX = pos.x;
     var cY = pos.y;
-    var size = 17;
+    var size = 28;
     ctx.beginPath();
-    ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
+    ctx.arc(cX, cY, 17, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white';
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(cX, cY, 11.5, 0, 2 * Math.PI, false);
+    ctx.arc(cX, cY, 16.5, 0, 2 * Math.PI, false);
     ctx.fillStyle = this.colors.background;
     ctx.fill();
     var nodeType = node.data('external_type');
@@ -45664,7 +45664,7 @@ function (_super) {
     }); //Zoom in on load
 
     cy.on('layoutstop', function () {
-      return _this.zoom(2);
+      return _this.zoom(3);
     });
     this.setState({
       cy: cy,

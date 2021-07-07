@@ -672,15 +672,15 @@ export default class CanvasDrawer {
     const pos = node.position();
     const cX = pos.x;
     const cY = pos.y;
-    const size = 17;
+    const size = 28;
 
     ctx.beginPath();
-    ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
+    ctx.arc(cX, cY, 17, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white';
     ctx.fill();
 
     ctx.beginPath();
-    ctx.arc(cX, cY, 11.5, 0, 2 * Math.PI, false);
+    ctx.arc(cX, cY, 16.5, 0, 2 * Math.PI, false);
     ctx.fillStyle = this.colors.background;
     ctx.fill();
 
