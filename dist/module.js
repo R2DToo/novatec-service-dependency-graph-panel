@@ -44949,7 +44949,7 @@ function () {
 
   CanvasDrawer.prototype._drawLabel = function (ctx, label, cX, cY) {
     var labelPadding = 1;
-    ctx.font = '6px Arial';
+    ctx.font = '8px Arial';
     var labelWidth = ctx.measureText(label).width;
     var xPos = cX - labelWidth / 2;
     var yPos = cY + 3;
@@ -45092,7 +45092,7 @@ function () {
     var cY = pos.y; //Changed from const size = 20;
     // Makes font larger
 
-    var size = 20;
+    var size = 30;
     ctx.beginPath();
     ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white'; // Commented out to remove white line obstructing icon
@@ -45203,7 +45203,7 @@ function () {
     var pos = node.position();
     var cX = pos.x;
     var cY = pos.y;
-    var size = 12;
+    var size = 17;
     ctx.beginPath();
     ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white';
@@ -45230,7 +45230,7 @@ function () {
     //   }
     // }
 
-    ctx.font = '10px Arial';
+    ctx.font = '8px Arial';
     var labelWidth = ctx.measureText(label).width;
     var xPos = pos.x - labelWidth / 2;
     var yPos = pos.y + node.height() * 0.8;

@@ -421,7 +421,7 @@ export default class CanvasDrawer {
 
   _drawLabel(ctx: CanvasRenderingContext2D, label: string, cX: number, cY: number) {
     const labelPadding = 1;
-    ctx.font = '6px Arial';
+    ctx.font = '8px Arial';
 
     const labelWidth = ctx.measureText(label).width;
     const xPos = cX - labelWidth / 2;
@@ -557,7 +557,7 @@ export default class CanvasDrawer {
     const cY = pos.y;
     //Changed from const size = 20;
     // Makes font larger
-    const size = 20;
+    const size = 30;
 
     ctx.beginPath();
     ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
@@ -669,7 +669,7 @@ export default class CanvasDrawer {
     const pos = node.position();
     const cX = pos.x;
     const cY = pos.y;
-    const size = 12;
+    const size = 17;
 
     ctx.beginPath();
     ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
@@ -700,7 +700,7 @@ export default class CanvasDrawer {
     //   }
     // }
 
-    ctx.font = '10px Arial';
+    ctx.font = '8px Arial';
 
     const labelWidth = ctx.measureText(label).width;
     const xPos = pos.x - labelWidth / 2;
