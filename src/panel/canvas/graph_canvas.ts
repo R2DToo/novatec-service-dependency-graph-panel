@@ -616,7 +616,7 @@ export default class CanvasDrawer {
     const cY = pos.y + fontSize / 2 - (fontSize / 2) * (lines.length - 1);
 
     ctx.font = '8px Arial';
-    ctx.fillStyle = this.colors.default;
+    ctx.fillStyle = this.colors.defaultText;
     for (let i = 0; i < lines.length; i++) {
       ctx.fillText(lines[i], cX, cY + i * fontSize);
     }

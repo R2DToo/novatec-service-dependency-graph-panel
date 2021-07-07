@@ -45160,7 +45160,7 @@ function () {
     var cX = pos.x + this.donutRadius * 1.25;
     var cY = pos.y + fontSize / 2 - fontSize / 2 * (lines.length - 1);
     ctx.font = '8px Arial';
-    ctx.fillStyle = this.colors["default"];
+    ctx.fillStyle = this.colors.defaultText;
 
     for (var i = 0; i < lines.length; i++) {
       ctx.fillText(lines[i], cX, cY + i * fontSize);
