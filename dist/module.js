@@ -44501,8 +44501,9 @@ var CanvasDrawer =
 function () {
   function CanvasDrawer(ctrl, cy, cyCanvas) {
     this.colors = {
-      "default": '#bad5ed',
+      "default": '#111217',
       background: '#212121',
+      defaultText: '#ffffff',
       edge: '#505050',
       status: {
         warning: 'orange'
@@ -44954,8 +44955,10 @@ function () {
     var xPos = cX - labelWidth / 2;
     var yPos = cY + 3;
     ctx.fillStyle = this.colors["default"];
+    ctx.globalAlpha = 0;
     ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
-    ctx.fillStyle = this.colors.background;
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = this.colors.defaultText;
     ctx.fillText(label, xPos, yPos);
   };
 
@@ -45247,8 +45250,10 @@ function () {
       ctx.fillStyle = '#FF7383';
     }
 
+    ctx.globalAlpha = 0;
     ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
-    ctx.fillStyle = this.colors.background;
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = this.colors.defaultText;
     ctx.fillText(label, xPos, yPos);
   };
 

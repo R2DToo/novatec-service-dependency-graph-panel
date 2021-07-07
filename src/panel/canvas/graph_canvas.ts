@@ -14,8 +14,9 @@ const scaleValues: ScaleValue[] = [
 
 export default class CanvasDrawer {
   readonly colors = {
-    default: '#bad5ed',
+    default: '#111217',
     background: '#212121',
+    defaultText: '#ffffff',
     edge: '#505050',
     status: {
       warning: 'orange',
@@ -428,9 +429,11 @@ export default class CanvasDrawer {
     const yPos = cY + 3;
 
     ctx.fillStyle = this.colors.default;
+    ctx.globalAlpha = 0;
     ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
+    ctx.globalAlpha = 1;
 
-    ctx.fillStyle = this.colors.background;
+    ctx.fillStyle = this.colors.defaultText;
     ctx.fillText(label, xPos, yPos);
   }
 
@@ -716,10 +719,11 @@ export default class CanvasDrawer {
     } else {
       ctx.fillStyle = '#FF7383';
     }
-
+    ctx.globalAlpha = 0;
     ctx.fillRect(xPos - labelPadding, yPos - 6 - labelPadding, labelWidth + 2 * labelPadding, 6 + 2 * labelPadding);
+    ctx.globalAlpha = 1;
 
-    ctx.fillStyle = this.colors.background;
+    ctx.fillStyle = this.colors.defaultText;
     ctx.fillText(label, xPos, yPos);
   }
 
