@@ -324,82 +324,84 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       this.summary = summaryTable;
       console.log("Summary Table", this.summary);
 
-      this.currentType = currentNode.data('type');
-      const receiving: TableContent[] = [];
-      const sending: TableContent[] = [];
-      const edges: EdgeCollection = selection.connectedEdges();
-
-      const metrics: IntGraphMetrics = selection.nodes()[0].data('metrics');
-
-      const requestCount = _.defaultTo(metrics.rate, -1);
-      const errorCount = _.defaultTo(metrics.error_rate, -1);
-      const duration = _.defaultTo(metrics.response_time, -1);
-      const threshold = _.defaultTo(metrics.threshold, -1);
-
-      //var requestCount = 1;
-      // var target = { selectedAlertStateList: { value: 'All' }, selectedAlertTypeList: { value: 'None' }, sysparam_query: `cmdb_ci.name=${this.selectionId}` };
-      // var alertData = await dataSource.snowConnection.getAlerts(target, 0, 0, {});
-      // console.log("Alert: ", alertData);
-
-      if (requestCount >= 0) {
-        this.selectionStatistics.requests = Math.floor(requestCount);
-      }
-      if (errorCount >= 0) {
-        this.selectionStatistics.errors = Math.floor(errorCount);
-      }
-      if (duration >= 0) {
-        this.selectionStatistics.responseTime = Math.floor(duration);
-
-        if (threshold >= 0) {
-          this.selectionStatistics.threshold = Math.floor(threshold);
-          this.selectionStatistics.thresholdViolation = duration > threshold;
-        }
-      }
-
-      for (let i = 0; i < edges.length; i++) {
-        const actualEdge: EdgeSingular = edges[i];
-        const sendingCheck: boolean = actualEdge.source().id() === this.selectionId;
-        let node: NodeSingular;
-
-        if (sendingCheck) {
-          node = actualEdge.target();
-        } else {
-          node = actualEdge.source();
-        }
-
-        const sendingObject: TableContent = {
-          name: node.id(),
-          responseTime: '-',
-          rate: '-',
-          error: '-',
-        };
-
-        const edgeMetrics: IntGraphMetrics = actualEdge.data('metrics');
-
-        if (edgeMetrics !== undefined) {
-          const { response_time, rate, error_rate } = edgeMetrics;
-
-          if (rate !== undefined) {
-            sendingObject.rate = Math.floor(rate).toString();
-          }
-          if (response_time !== undefined) {
-            sendingObject.responseTime = Math.floor(response_time) + ' ms';
-          }
-          if (error_rate !== undefined && rate !== undefined) {
-            sendingObject.error = Math.floor(error_rate / (rate / 100)) + '%';
-          }
-        }
-
-        if (sendingCheck) {
-          sending.push(sendingObject);
-        } else {
-          receiving.push(sendingObject);
-        }
-      }
-      this.receiving = receiving;
-      this.sending = sending;
-
       this.generateDrillDownLink();
+
+      // this.currentType = currentNode.data('type');
+      // const receiving: TableContent[] = [];
+      // const sending: TableContent[] = [];
+      // const edges: EdgeCollection = selection.connectedEdges();
+
+      // const metrics: IntGraphMetrics = selection.nodes()[0].data('metrics');
+
+      // const requestCount = _.defaultTo(metrics.rate, -1);
+      // const errorCount = _.defaultTo(metrics.error_rate, -1);
+      // const duration = _.defaultTo(metrics.response_time, -1);
+      // const threshold = _.defaultTo(metrics.threshold, -1);
+
+      // //var requestCount = 1;
+      // // var target = { selectedAlertStateList: { value: 'All' }, selectedAlertTypeList: { value: 'None' }, sysparam_query: `cmdb_ci.name=${this.selectionId}` };
+      // // var alertData = await dataSource.snowConnection.getAlerts(target, 0, 0, {});
+      // // console.log("Alert: ", alertData);
+
+      // if (requestCount >= 0) {
+      //   this.selectionStatistics.requests = Math.floor(requestCount);
+      // }
+      // if (errorCount >= 0) {
+      //   this.selectionStatistics.errors = Math.floor(errorCount);
+      // }
+      // if (duration >= 0) {
+      //   this.selectionStatistics.responseTime = Math.floor(duration);
+
+      //   if (threshold >= 0) {
+      //     this.selectionStatistics.threshold = Math.floor(threshold);
+      //     this.selectionStatistics.thresholdViolation = duration > threshold;
+      //   }
+      // }
+
+      // for (let i = 0; i < edges.length; i++) {
+      //   const actualEdge: EdgeSingular = edges[i];
+      //   const sendingCheck: boolean = actualEdge.source().id() === this.selectionId;
+      //   let node: NodeSingular;
+
+      //   if (sendingCheck) {
+      //     node = actualEdge.target();
+      //   } else {
+      //     node = actualEdge.source();
+      //   }
+
+      //   const sendingObject: TableContent = {
+      //     name: node.id(),
+      //     responseTime: '-',
+      //     rate: '-',
+      //     error: '-',
+      //   };
+
+      //   const edgeMetrics: IntGraphMetrics = actualEdge.data('metrics');
+
+      //   if (edgeMetrics !== undefined) {
+      //     const { response_time, rate, error_rate } = edgeMetrics;
+
+      //     if (rate !== undefined) {
+      //       sendingObject.rate = Math.floor(rate).toString();
+      //     }
+      //     if (response_time !== undefined) {
+      //       sendingObject.responseTime = Math.floor(response_time) + ' ms';
+      //     }
+      //     if (error_rate !== undefined && rate !== undefined) {
+      //       sendingObject.error = Math.floor(error_rate / (rate / 100)) + '%';
+      //     }
+      //   }
+
+      //   if (sendingCheck) {
+      //     sending.push(sendingObject);
+      //   } else {
+      //     receiving.push(sendingObject);
+      //   }
+      // }
+      // this.receiving = receiving;
+      // this.sending = sending;
+
+      // this.generateDrillDownLink();
     }
   }
 

@@ -548,30 +548,50 @@ export default class CanvasDrawer {
     //   if (image != null) {
     //     const cX = node.position().x;
     //     const cY = node.position().y;
-    //     const iconSize = 16;
+    //     const iconSize = 30;
 
     //     ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
     //   }
     // }
 
+    //This is the code which adds colors around the internal nodes
     // Start of new code
-    const pos = node.position();
-    const cX = pos.x;
-    const cY = pos.y;
+    const metrics: IntGraphMetrics = node.data('metrics');
+
+    const requestCount = _.defaultTo(metrics.rate, -1);
+    const errorCount = _.defaultTo(metrics.error_rate, 0);
+    //const responseTime = _.defaultTo(metrics.response_time, -1);
+    //const threshold = _.defaultTo(metrics.threshold, -1);
+
+    var unknownPct;
+    var errorPct;
+    var healthyPct;
+
+    if (requestCount < 0) {
+      healthyPct = 0;
+      errorPct = 0;
+      unknownPct = 1;
+    } else {
+      if (errorCount <= 0) {
+        errorPct = 0.0;
+      } else {
+        errorPct = (1.0 / requestCount) * errorCount;
+      }
+      healthyPct = 1.0 - errorPct;
+      unknownPct = 0;
+    }
+
+    // drawing the donut
+    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
+
+    // End of new code
+
+    // Start of new code
+    const cX = node.position().x;
+    const cY = node.position().y;
     //Changed from const size = 20;
     // Makes font larger
     const size = 30;
-
-    ctx.beginPath();
-    ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'white';
-    // Commented out to remove white line obstructing icon
-    //ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(cX, cY, 11.5, 0, 2 * Math.PI, false);
-    ctx.fillStyle = this.colors.background;
-    ctx.fill();
 
     const nodeType = node.data('external_type');
 
@@ -669,6 +689,38 @@ export default class CanvasDrawer {
   }
 
   _drawExternalService(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
+    //This is the code which adds colors around the external nodes
+    // Start of new code
+    const metrics: IntGraphMetrics = node.data('metrics');
+
+    const requestCount = _.defaultTo(metrics.rate, -1);
+    const errorCount = _.defaultTo(metrics.error_rate, 0);
+    //const responseTime = _.defaultTo(metrics.response_time, -1);
+    //const threshold = _.defaultTo(metrics.threshold, -1);
+
+    var unknownPct;
+    var errorPct;
+    var healthyPct;
+
+    if (requestCount < 0) {
+      healthyPct = 0;
+      errorPct = 0;
+      unknownPct = 1;
+    } else {
+      if (errorCount <= 0) {
+        errorPct = 0.0;
+      } else {
+        errorPct = (1.0 / requestCount) * errorCount;
+      }
+      healthyPct = 1.0 - errorPct;
+      unknownPct = 0;
+    }
+
+    // drawing the donut
+    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
+
+    // End of new code
+
     const pos = node.position();
     const cX = pos.x;
     const cY = pos.y;
@@ -677,7 +729,7 @@ export default class CanvasDrawer {
     ctx.beginPath();
     ctx.arc(cX, cY, 17, 0, 2 * Math.PI, false);
     ctx.fillStyle = 'white';
-    ctx.fill();
+    //ctx.fill();
 
     ctx.beginPath();
     ctx.arc(cX, cY, 16.5, 0, 2 * Math.PI, false);

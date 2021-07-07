@@ -45085,26 +45085,49 @@ function () {
     //   if (image != null) {
     //     const cX = node.position().x;
     //     const cY = node.position().y;
-    //     const iconSize = 16;
+    //     const iconSize = 30;
     //     ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
     //   }
     // }
+    //This is the code which adds colors around the internal nodes
     // Start of new code
-    var pos = node.position();
-    var cX = pos.x;
-    var cY = pos.y; //Changed from const size = 20;
+    var metrics = node.data('metrics');
+
+    var requestCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.rate, -1);
+
+    var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0); //const responseTime = _.defaultTo(metrics.response_time, -1);
+    //const threshold = _.defaultTo(metrics.threshold, -1);
+
+
+    var unknownPct;
+    var errorPct;
+    var healthyPct;
+
+    if (requestCount < 0) {
+      healthyPct = 0;
+      errorPct = 0;
+      unknownPct = 1;
+    } else {
+      if (errorCount <= 0) {
+        errorPct = 0.0;
+      } else {
+        errorPct = 1.0 / requestCount * errorCount;
+      }
+
+      healthyPct = 1.0 - errorPct;
+      unknownPct = 0;
+    } // drawing the donut
+
+
+    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // End of new code
+    // Start of new code
+
+
+    var cX = node.position().x;
+    var cY = node.position().y; //Changed from const size = 20;
     // Makes font larger
 
     var size = 30;
-    ctx.beginPath();
-    ctx.arc(cX, cY, 12, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'white'; // Commented out to remove white line obstructing icon
-    //ctx.fill();
-
-    ctx.beginPath();
-    ctx.arc(cX, cY, 11.5, 0, 2 * Math.PI, false);
-    ctx.fillStyle = this.colors.background;
-    ctx.fill();
     var nodeType = node.data('external_type');
 
     var image = this._getImageAsset(nodeType);
@@ -45203,14 +45226,47 @@ function () {
   };
 
   CanvasDrawer.prototype._drawExternalService = function (ctx, node) {
+    //This is the code which adds colors around the external nodes
+    // Start of new code
+    var metrics = node.data('metrics');
+
+    var requestCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.rate, -1);
+
+    var errorCount = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.defaultTo(metrics.error_rate, 0); //const responseTime = _.defaultTo(metrics.response_time, -1);
+    //const threshold = _.defaultTo(metrics.threshold, -1);
+
+
+    var unknownPct;
+    var errorPct;
+    var healthyPct;
+
+    if (requestCount < 0) {
+      healthyPct = 0;
+      errorPct = 0;
+      unknownPct = 1;
+    } else {
+      if (errorCount <= 0) {
+        errorPct = 0.0;
+      } else {
+        errorPct = 1.0 / requestCount * errorCount;
+      }
+
+      healthyPct = 1.0 - errorPct;
+      unknownPct = 0;
+    } // drawing the donut
+
+
+    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // End of new code
+
+
     var pos = node.position();
     var cX = pos.x;
     var cY = pos.y;
     var size = 28;
     ctx.beginPath();
     ctx.arc(cX, cY, 17, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'white';
-    ctx.fill();
+    ctx.fillStyle = 'white'; //ctx.fill();
+
     ctx.beginPath();
     ctx.arc(cX, cY, 16.5, 0, 2 * Math.PI, false);
     ctx.fillStyle = this.colors.background;
@@ -45893,7 +45949,7 @@ function (_super) {
 
   ServiceDependencyGraph.prototype.updateStatisticTable = function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var selection, currentNode, summaryTable, dataSource, dataSourceData, receiving, sending, edges, metrics, requestCount, errorCount, duration, threshold, i, actualEdge, sendingCheck, node, sendingObject, edgeMetrics, response_time, rate, error_rate;
+      var selection, currentNode, summaryTable, dataSource, dataSourceData;
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -45935,80 +45991,6 @@ function (_super) {
             });
             this.summary = summaryTable;
             console.log("Summary Table", this.summary);
-            this.currentType = currentNode.data('type');
-            receiving = [];
-            sending = [];
-            edges = selection.connectedEdges();
-            metrics = selection.nodes()[0].data('metrics');
-            requestCount = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.rate, -1);
-            errorCount = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.error_rate, -1);
-            duration = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.response_time, -1);
-            threshold = lodash__WEBPACK_IMPORTED_MODULE_8___default.a.defaultTo(metrics.threshold, -1); //var requestCount = 1;
-            // var target = { selectedAlertStateList: { value: 'All' }, selectedAlertTypeList: { value: 'None' }, sysparam_query: `cmdb_ci.name=${this.selectionId}` };
-            // var alertData = await dataSource.snowConnection.getAlerts(target, 0, 0, {});
-            // console.log("Alert: ", alertData);
-
-            if (requestCount >= 0) {
-              this.selectionStatistics.requests = Math.floor(requestCount);
-            }
-
-            if (errorCount >= 0) {
-              this.selectionStatistics.errors = Math.floor(errorCount);
-            }
-
-            if (duration >= 0) {
-              this.selectionStatistics.responseTime = Math.floor(duration);
-
-              if (threshold >= 0) {
-                this.selectionStatistics.threshold = Math.floor(threshold);
-                this.selectionStatistics.thresholdViolation = duration > threshold;
-              }
-            }
-
-            for (i = 0; i < edges.length; i++) {
-              actualEdge = edges[i];
-              sendingCheck = actualEdge.source().id() === this.selectionId;
-              node = void 0;
-
-              if (sendingCheck) {
-                node = actualEdge.target();
-              } else {
-                node = actualEdge.source();
-              }
-
-              sendingObject = {
-                name: node.id(),
-                responseTime: '-',
-                rate: '-',
-                error: '-'
-              };
-              edgeMetrics = actualEdge.data('metrics');
-
-              if (edgeMetrics !== undefined) {
-                response_time = edgeMetrics.response_time, rate = edgeMetrics.rate, error_rate = edgeMetrics.error_rate;
-
-                if (rate !== undefined) {
-                  sendingObject.rate = Math.floor(rate).toString();
-                }
-
-                if (response_time !== undefined) {
-                  sendingObject.responseTime = Math.floor(response_time) + ' ms';
-                }
-
-                if (error_rate !== undefined && rate !== undefined) {
-                  sendingObject.error = Math.floor(error_rate / (rate / 100)) + '%';
-                }
-              }
-
-              if (sendingCheck) {
-                sending.push(sendingObject);
-              } else {
-                receiving.push(sendingObject);
-              }
-            }
-
-            this.receiving = receiving;
-            this.sending = sending;
             this.generateDrillDownLink();
             _a.label = 3;
 
