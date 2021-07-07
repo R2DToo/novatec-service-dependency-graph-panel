@@ -1,5 +1,5 @@
 import CanvasDrawer from 'panel/canvas/graph_canvas';
-import cytoscape, { EdgeCollection, EdgeSingular, ElementDefinition, NodeSingular } from 'cytoscape';
+import cytoscape, { EdgeSingular, ElementDefinition, NodeSingular } from 'cytoscape';
 import React from 'react';
 import { PureComponent } from 'react';
 import { PanelController } from '../PanelController';
@@ -10,7 +10,6 @@ import { Statistics } from '../statistics/Statistics';
 import _ from 'lodash';
 import {
   TableContent,
-  IntGraphMetrics,
   IntGraph,
   IntGraphNode,
   IntGraphEdge,
