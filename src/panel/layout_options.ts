@@ -19,7 +19,7 @@ const options = {
   handleDisconnected: true, // if true, avoids disconnected components from overlapping
   convergenceThreshold: 0.01, // when the alpha value (system energy) falls below this value, the layout stops
   nodeSpacing: function(node: any) {
-    return 50;
+    return 40;
   }, // extra spacing around nodes
   flow: undefined as undefined, // use DAG/tree flow layout if specified, e.g. { axis: 'y', minSeparation: 30 }
   alignment: undefined as undefined, // relative alignment constraints on nodes, e.g. function( node ){ return { x: 0, y: 1 } }

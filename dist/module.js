@@ -45507,7 +45507,7 @@ var options = {
   handleDisconnected: true,
   convergenceThreshold: 0.01,
   nodeSpacing: function nodeSpacing(node) {
-    return 50;
+    return 40;
   },
   flow: undefined,
   alignment: undefined,
@@ -45656,6 +45656,10 @@ function (_super) {
     });
     cy.on('unselect', 'node', function () {
       return _this.onSelectionChange();
+    }); //Zoom in on load
+
+    cy.on('layoutstop', function () {
+      return _this.zoom(2);
     });
     this.setState({
       cy: cy,
