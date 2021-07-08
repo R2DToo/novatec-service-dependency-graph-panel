@@ -45636,7 +45636,7 @@ function (_super) {
     }); //Zoom in on load
 
     cy.on('layoutstop', function () {
-      return _this.zoom(3);
+      return _this.zoom(2);
     });
     this.setState({
       cy: cy,
