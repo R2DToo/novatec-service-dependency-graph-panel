@@ -531,23 +531,28 @@ export default class CanvasDrawer {
       this._drawNodeStatistics(ctx, node);
     }
   }
-
   _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    // Start of new code
-    const cX = node.position().x;
-    const cY = node.position().y;
-    //Changed from const size = 20;
-    // Makes font larger
-    const size = 30;
+    const nodeId: string = node.id();
+    const iconMappings = this.controller.getSettings(true).icons;
 
-    const nodeType = node.data('external_type');
+    const mapping = _.find(iconMappings, ({ pattern }) => {
+      try {
+        return new RegExp(pattern).test(nodeId);
+      } catch (error) {
+        return false;
+      }
+    });
 
-    const image = this._getImageAsset(nodeType);
-    if (image != null) {
-      ctx.drawImage(image, cX - size / 2, cY - size / 2, size, size);
+    if (mapping) {
+      const image = this._getAsset(mapping.filename, mapping.filename + '.png');
+      if (image != null) {
+        const cX = node.position().x;
+        const cY = node.position().y;
+        const iconSize = 30;
+
+        ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
+      }
     }
-
-    // End of new code
   }
 
   _drawNodeStatistics(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {

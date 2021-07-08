@@ -45071,20 +45071,29 @@ function () {
   };
 
   CanvasDrawer.prototype._drawServiceIcon = function (ctx, node) {
-    // Start of new code
-    var cX = node.position().x;
-    var cY = node.position().y; //Changed from const size = 20;
-    // Makes font larger
+    var nodeId = node.id();
+    var iconMappings = this.controller.getSettings(true).icons;
 
-    var size = 30;
-    var nodeType = node.data('external_type');
+    var mapping = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(iconMappings, function (_a) {
+      var pattern = _a.pattern;
 
-    var image = this._getImageAsset(nodeType);
+      try {
+        return new RegExp(pattern).test(nodeId);
+      } catch (error) {
+        return false;
+      }
+    });
 
-    if (image != null) {
-      ctx.drawImage(image, cX - size / 2, cY - size / 2, size, size);
-    } // End of new code
+    if (mapping) {
+      var image = this._getAsset(mapping.filename, mapping.filename + '.png');
 
+      if (image != null) {
+        var cX = node.position().x;
+        var cY = node.position().y;
+        var iconSize = 30;
+        ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
+      }
+    }
   };
 
   CanvasDrawer.prototype._drawNodeStatistics = function (ctx, node) {
