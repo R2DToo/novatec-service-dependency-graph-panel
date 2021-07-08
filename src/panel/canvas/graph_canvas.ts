@@ -474,7 +474,7 @@ export default class CanvasDrawer {
       that._drawNode(ctx, node);
 
       // drawing the node label in case we are not zoomed out
-      if (cy.zoom() > 1) {
+      if (cy.zoom() >= 0.4) {
         that._drawNodeLabel(ctx, node);
       }
     }
@@ -533,6 +533,8 @@ export default class CanvasDrawer {
   }
   _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
     const nodeId: string = node.id();
+    //const nodeId: string = node.data('classType');
+    //console.log('class type: ', nodeId);
     const iconMappings = this.controller.getSettings(true).icons;
 
     const mapping = _.find(iconMappings, ({ pattern }) => {
@@ -641,26 +643,28 @@ export default class CanvasDrawer {
   }
 
   _drawExternalService(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    const pos = node.position();
-    const cX = pos.x;
-    const cY = pos.y;
-    const size = 28;
+    //const nodeId: string = node.id();
+    const nodeId: string = node.data('classType');
+    //console.log('class type: ', nodeId);
+    const iconMappings = this.controller.getSettings(true).externalIcons;
 
-    ctx.beginPath();
-    ctx.arc(cX, cY, 17, 0, 2 * Math.PI, false);
-    ctx.fillStyle = 'white';
-    //ctx.fill();
+    const mapping = _.find(iconMappings, ({ pattern }) => {
+      try {
+        return new RegExp(pattern).test(nodeId);
+      } catch (error) {
+        return false;
+      }
+    });
 
-    ctx.beginPath();
-    ctx.arc(cX, cY, 16.5, 0, 2 * Math.PI, false);
-    ctx.fillStyle = this.colors.background;
-    ctx.fill();
+    if (mapping) {
+      const image = this._getAsset(mapping.filename, mapping.filename + '.png');
+      if (image != null) {
+        const cX = node.position().x;
+        const cY = node.position().y;
+        const iconSize = 30;
 
-    const nodeType = node.data('external_type');
-
-    const image = this._getImageAsset(nodeType);
-    if (image != null) {
-      ctx.drawImage(image, cX - size / 2, cY - size / 2, size, size);
+        ctx.drawImage(image, cX - iconSize / 2, cY - iconSize / 2, iconSize, iconSize);
+      }
     }
   }
 
