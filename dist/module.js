@@ -45643,10 +45643,8 @@ function (_super) {
     cy.on('unselect', 'node', function () {
       return _this.onSelectionChange();
     }); //Zoom in on load
+    //cy.on('layoutstop', () => this.zoom(2));
 
-    cy.on('layoutstop', function () {
-      return _this.zoom(2);
-    });
     this.setState({
       cy: cy,
       graphCanvas: graphCanvas
