@@ -30,6 +30,8 @@ class GraphGenerator {
       nodeName = 'undefined';
     }
 
+    var className = dataElements[0].data.className;
+
     const internalNode =
       _.some(dataElements, ['type', GraphDataType.INTERNAL]) ||
       _.some(dataElements, ['type', GraphDataType.EXTERNAL_IN]);
@@ -44,6 +46,7 @@ class GraphGenerator {
         external_type: nodeType,
         type: nodeType,
         metrics,
+        className: className,
       },
     };
 

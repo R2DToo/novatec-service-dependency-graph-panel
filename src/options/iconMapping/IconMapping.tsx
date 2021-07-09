@@ -44,7 +44,7 @@ export class IconMapping extends React.PureComponent<Props, State> {
   addMapping() {
     const { path } = this.state.item;
     const icons = this.state.context.options[path];
-    icons.push({ pattern: 'my-type', filename: 'default' });
+    icons.push({ pattern: '', filename: 'default' });
     this.state.onChange.call(path, icons);
   }
 

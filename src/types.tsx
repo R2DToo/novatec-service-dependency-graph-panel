@@ -34,6 +34,7 @@ export interface DataMapping {
   showDummyData: boolean;
 
   baselineRtUpper: string;
+  classColumn: string;
 }
 
 export interface PanelStyleSettings {
@@ -86,6 +87,7 @@ export interface DataElement {
   error_rate_out?: number;
   type?: string;
   threshold?: number;
+  className?: string;
 }
 
 export enum GraphDataType {
@@ -110,6 +112,7 @@ export interface IntGraphNodeData {
   metrics?: IntGraphMetrics;
   external_type?: string;
   label?: string;
+  className?: string;
 }
 
 export interface IntGraphMetrics {

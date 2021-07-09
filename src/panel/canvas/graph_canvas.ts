@@ -532,9 +532,9 @@ export default class CanvasDrawer {
     }
   }
   _drawServiceIcon(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    const nodeId: string = node.id();
-    //const nodeId: string = node.data('classType');
-    //console.log('class type: ', nodeId);
+    //const nodeId: string = node.id();
+    const nodeId: string = node.data('className');
+    //console.log('class type: ', node.data('className'));
     const iconMappings = this.controller.getSettings(true).icons;
 
     const mapping = _.find(iconMappings, ({ pattern }) => {

@@ -66,6 +66,14 @@ export const optionsBuilder = (builder: PanelOptionsEditorBuilder<PanelSettings>
 
       //Data Mapping
       .addCustomEditor({
+        id: 'classColumn',
+        path: 'dataMapping.classColumn',
+        name: 'Class Column',
+        editor: TypeaheadTextField,
+        category: ['Data Mapping'],
+        defaultValue: DefaultSettings.dataMapping.classColumn,
+      })
+      .addCustomEditor({
         id: 'responseTime',
         path: 'dataMapping.responseTimeColumn',
         name: 'Response Time Column',

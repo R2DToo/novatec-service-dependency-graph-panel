@@ -158,6 +158,7 @@ class PreProcessor {
       requestRateColumn,
       requestRateOutgoingColumn,
       baselineRtUpper,
+      classColumn,
     } = this.controller.getSettings(true).dataMapping;
 
     for (const inputData of inputDataSets) {
@@ -167,6 +168,7 @@ class PreProcessor {
       const aggregationSuffixField = _.find(fields, ['name', aggregationType]);
 
       const typeField = _.find(fields, ['name', type]);
+      const classField = _.find(fields, ['name', classColumn]);
 
       const sourceColumnField = _.find(fields, ['name', sourceColumn]);
       const targetColumnField = _.find(fields, ['name', targetColumn]);
@@ -194,6 +196,7 @@ class PreProcessor {
         row['rate_out'] = requestRateOutgoingColumnField?.values.get(i);
         row['threshold'] = responseTimeBaselineField?.values.get(i);
         row['type'] = typeField?.values.get(i);
+        row['className'] = classField?.values.get(i);
         // The above code returns { "": undefined } for values that do not exist.
         // These values are filtered by this line.
         Object.keys(row).forEach(key => (row[key] === undefined || row[key] === '') && delete row[key]);

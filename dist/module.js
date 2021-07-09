@@ -43440,6 +43440,7 @@ var DefaultSettings = {
     extOrigin: 'external_origin',
     extTarget: 'external_target',
     type: 'type',
+    classColumn: 'type',
     baselineRtUpper: 'threshold',
     showDummyData: false
   },
@@ -43842,7 +43843,7 @@ function (_super) {
     var path = this.state.item.path;
     var icons = this.state.context.options[path];
     icons.push({
-      pattern: 'my-type',
+      pattern: '',
       filename: 'default'
     });
     this.state.onChange.call(path, icons);
@@ -43996,6 +43997,13 @@ var optionsBuilder = function optionsBuilder(builder) {
     defaultValue: _DefaultSettings__WEBPACK_IMPORTED_MODULE_3__["DefaultSettings"].dataMapping.extTarget
   }) //Data Mapping
   .addCustomEditor({
+    id: 'classColumn',
+    path: 'dataMapping.classColumn',
+    name: 'Class Column',
+    editor: _TypeAheadTextfield_TypeaheadTextfield__WEBPACK_IMPORTED_MODULE_0__["TypeaheadTextField"],
+    category: ['Data Mapping'],
+    defaultValue: _DefaultSettings__WEBPACK_IMPORTED_MODULE_3__["DefaultSettings"].dataMapping.classColumn
+  }).addCustomEditor({
     id: 'responseTime',
     path: 'dataMapping.responseTimeColumn',
     name: 'Response Time Column',
@@ -45071,8 +45079,8 @@ function () {
   };
 
   CanvasDrawer.prototype._drawServiceIcon = function (ctx, node) {
-    var nodeId = node.id(); //const nodeId: string = node.data('classType');
-    //console.log('class type: ', nodeId);
+    //const nodeId: string = node.id();
+    var nodeId = node.data('className'); //console.log('class type: ', node.data('className'));
 
     var iconMappings = this.controller.getSettings(true).icons;
 
@@ -46157,6 +46165,8 @@ function () {
       nodeName = 'undefined';
     }
 
+    var className = dataElements[0].data.className;
+
     var internalNode = lodash__WEBPACK_IMPORTED_MODULE_0___default.a.some(dataElements, ['type', _types__WEBPACK_IMPORTED_MODULE_2__["GraphDataType"].INTERNAL]) || lodash__WEBPACK_IMPORTED_MODULE_0___default.a.some(dataElements, ['type', _types__WEBPACK_IMPORTED_MODULE_2__["GraphDataType"].EXTERNAL_IN]);
 
     var nodeType = internalNode ? _types__WEBPACK_IMPORTED_MODULE_2__["EnGraphNodeType"].INTERNAL : _types__WEBPACK_IMPORTED_MODULE_2__["EnGraphNodeType"].EXTERNAL;
@@ -46167,7 +46177,8 @@ function () {
         label: nodeName,
         external_type: nodeType,
         type: nodeType,
-        metrics: metrics
+        metrics: metrics,
+        className: className
       }
     };
     var aggregationFunction = sumMetrics ? lodash__WEBPACK_IMPORTED_MODULE_0___default.a.sum : lodash__WEBPACK_IMPORTED_MODULE_0___default.a.mean;
@@ -46654,7 +46665,8 @@ function () {
         responseTimeOutgoingColumn = _b.responseTimeOutgoingColumn,
         requestRateColumn = _b.requestRateColumn,
         requestRateOutgoingColumn = _b.requestRateOutgoingColumn,
-        baselineRtUpper = _b.baselineRtUpper;
+        baselineRtUpper = _b.baselineRtUpper,
+        classColumn = _b.classColumn;
 
     try {
       for (var inputDataSets_1 = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__values"])(inputDataSets), inputDataSets_1_1 = inputDataSets_1.next(); !inputDataSets_1_1.done; inputDataSets_1_1 = inputDataSets_1.next()) {
@@ -46668,6 +46680,8 @@ function () {
         var aggregationSuffixField = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(fields, ['name', aggregationType]);
 
         var typeField = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(fields, ['name', type]);
+
+        var classField = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(fields, ['name', classColumn]);
 
         var sourceColumnField = lodash__WEBPACK_IMPORTED_MODULE_1___default.a.find(fields, ['name', sourceColumn]);
 
@@ -46701,7 +46715,8 @@ function () {
           row['rate_in'] = requestRateColumnField === null || requestRateColumnField === void 0 ? void 0 : requestRateColumnField.values.get(i);
           row['rate_out'] = requestRateOutgoingColumnField === null || requestRateOutgoingColumnField === void 0 ? void 0 : requestRateOutgoingColumnField.values.get(i);
           row['threshold'] = responseTimeBaselineField === null || responseTimeBaselineField === void 0 ? void 0 : responseTimeBaselineField.values.get(i);
-          row['type'] = typeField === null || typeField === void 0 ? void 0 : typeField.values.get(i); // The above code returns { "": undefined } for values that do not exist.
+          row['type'] = typeField === null || typeField === void 0 ? void 0 : typeField.values.get(i);
+          row['className'] = classField === null || classField === void 0 ? void 0 : classField.values.get(i); // The above code returns { "": undefined } for values that do not exist.
           // These values are filtered by this line.
 
           Object.keys(row).forEach(function (key) {

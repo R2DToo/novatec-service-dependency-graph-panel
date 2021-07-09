@@ -18,6 +18,7 @@ export const DefaultSettings: PanelSettings = {
     extOrigin: 'external_origin',
     extTarget: 'external_target',
     type: 'type',
+    classColumn: 'type',
 
     baselineRtUpper: 'threshold',
 
