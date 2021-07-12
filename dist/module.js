@@ -45052,10 +45052,10 @@ function () {
       unknownPct = 0;
     } // drawing the donut
     // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
-    //Making Donut larger
+    //Making Donut larger. The middle number determines thickness
 
 
-    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]); // drawing the baseline status
+    this._drawDonut(ctx, node, 25, 5, 0.5, [errorPct, unknownPct, healthyPct]); // drawing the baseline status
 
 
     var showBaselines = this.controller.getSettings(true).showBaselines;
@@ -45890,29 +45890,43 @@ function (_super) {
 
   ServiceDependencyGraph.prototype.updateStatisticTable = function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var selection, currentNode, summaryTable, dataSource, dataSourceData;
+      var selection, currentNode, summaryTable, className, dataSource, dataSourceData;
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         switch (_a.label) {
           case 0:
             selection = this.state.cy.$(':selected');
             if (!(selection.length === 1)) return [3
             /*break*/
-            , 3];
+            , 5];
             this.selectionStatistics = {};
             currentNode = selection[0];
             this.selectionId = currentNode.id().toString();
             summaryTable = [];
+            className = currentNode.data('className').toString();
+            console.log("current node: ", className);
+            if (!(typeof currentNode.data('className') !== 'undefined')) return [3
+            /*break*/
+            , 1];
+            summaryTable.push({
+              name: "Class",
+              value: className
+            });
+            return [3
+            /*break*/
+            , 4];
+
+          case 1:
             return [4
             /*yield*/
             , this.datasourceSrv.get(this.state.settings.datasourceName)];
 
-          case 1:
+          case 2:
             dataSource = _a.sent();
             return [4
             /*yield*/
             , dataSource.snowConnection.getTopologyCISummary(this.selectionId)];
 
-          case 2:
+          case 3:
             dataSourceData = _a.sent();
             summaryTable.push({
               name: "Class",
@@ -45930,12 +45944,15 @@ function (_super) {
               name: "In Maintinance",
               value: dataSourceData.maintenance_schedule
             });
+            _a.label = 4;
+
+          case 4:
             this.summary = summaryTable;
             console.log("Summary Table", this.summary);
             this.generateDrillDownLink();
-            _a.label = 3;
+            _a.label = 5;
 
-          case 3:
+          case 5:
             return [2
             /*return*/
             ];

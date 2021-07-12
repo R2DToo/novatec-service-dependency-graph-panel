@@ -509,8 +509,8 @@ export default class CanvasDrawer {
 
     // drawing the donut
     // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
-    //Making Donut larger
-    this._drawDonut(ctx, node, 25, 7, 0.5, [errorPct, unknownPct, healthyPct]);
+    //Making Donut larger. The middle number determines thickness
+    this._drawDonut(ctx, node, 25, 5, 0.5, [errorPct, unknownPct, healthyPct]);
 
     // drawing the baseline status
     const { showBaselines } = this.controller.getSettings(true);
