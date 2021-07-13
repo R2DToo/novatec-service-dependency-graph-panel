@@ -571,7 +571,7 @@ export default class CanvasDrawer {
     if (requestCount >= 0) {
       const decimals = requestCount >= 1000 ? 1 : 0;
       if (humanFormat(parseFloat(requestCount.toString()), { decimals }) > 0) {
-        lines.push('Alerts: ' + humanFormat(parseFloat(requestCount.toString()), { decimals }));
+        lines.push('Alerts Present');
       }
     }
     if (errorCount >= 0) {
