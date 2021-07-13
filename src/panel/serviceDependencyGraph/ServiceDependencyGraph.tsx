@@ -121,7 +121,10 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     cy.on('select', 'node', () => this.onSelectionChange());
     cy.on('unselect', 'node', () => this.onSelectionChange());
     //Zoom in on load
-    cy.on('layoutstop', () => this.zoom(1.5));
+    cy.on('layoutstop', () => {
+      this.zoom(1.5);
+      this.toggleAnimation();
+    });
     this.setState({
       cy: cy,
       graphCanvas: graphCanvas,

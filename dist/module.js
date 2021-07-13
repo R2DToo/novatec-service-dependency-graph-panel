@@ -45659,7 +45659,9 @@ function (_super) {
     }); //Zoom in on load
 
     cy.on('layoutstop', function () {
-      return _this.zoom(1.5);
+      _this.zoom(1.5);
+
+      _this.toggleAnimation();
     });
     this.setState({
       cy: cy,
