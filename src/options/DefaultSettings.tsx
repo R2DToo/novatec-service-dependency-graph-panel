@@ -4,12 +4,12 @@ export const DefaultSettings: PanelSettings = {
   animate: true,
 
   dataMapping: {
-    aggregationType: 'service',
-    sourceColumn: 'origin_service',
-    targetColumn: 'target_service',
+    aggregationType: 'app',
+    sourceColumn: 'origin_app',
+    targetColumn: 'target_app',
 
     responseTimeColumn: 'response-time',
-    requestRateColumn: 'request-rate',
+    requestRateColumn: 'req_rate',
     errorRateColumn: 'error-rate',
     responseTimeOutgoingColumn: 'response-time-out',
     requestRateOutgoingColumn: 'request-rate-out',
@@ -26,9 +26,9 @@ export const DefaultSettings: PanelSettings = {
   },
 
   sumTimings: true,
-  filterEmptyConnections: true,
+  filterEmptyConnections: false,
   showDebugInformation: false,
-  showConnectionStats: true,
+  showConnectionStats: false,
   showBaselines: false,
 
   style: {
@@ -39,12 +39,68 @@ export const DefaultSettings: PanelSettings = {
 
   icons: [
     {
-      pattern: 'java',
-      filename: 'java',
+      pattern: 'Disk Partition|Disk',
+      filename: 'disk',
     },
     {
-      pattern: 'spok|star trek',
-      filename: 'star_trek',
+      pattern: 'File System',
+      filename: 'aws_filesystem',
+    },
+    {
+      pattern: 'IP Address',
+      filename: 'ip',
+    },
+    {
+      pattern: 'Network Adapter',
+      filename: 'nic',
+    },
+    {
+      pattern: 'Windows Server',
+      filename: 'windows',
+    },
+    {
+      pattern: 'Linux Server',
+      filename: 'linux',
+    },
+    {
+      pattern: 'Kubernetes Service',
+      filename: 'k8s-svc',
+    },
+    {
+      pattern: 'Kubernetes Pod',
+      filename: 'k8s-pod',
+    },
+    {
+      pattern: 'Docker Container|Docker Image',
+      filename: 'docker_container',
+    },
+    {
+      pattern: 'Manual Endpoint',
+      filename: 'manual_entrypoint',
+    },
+    {
+      pattern: 'ServiceNow Application Component',
+      filename: 'application_generic',
+    },
+    {
+      pattern: 'ServiceNow Application',
+      filename: 'application_svc',
+    },
+    {
+      pattern: 'ServiceNow MID Server',
+      filename: 'gear',
+    },
+    {
+      pattern: 'Kubernetes Volume',
+      filename: 'k8s-volume',
+    },
+    {
+      pattern: 'Tag-Based Application Service',
+      filename: 'tag',
+    },
+    {
+      pattern: '',
+      filename: 'default',
     },
   ],
 
