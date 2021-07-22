@@ -311,6 +311,8 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       this.selectionStatistics = {};
       const currentNode: NodeSingular = selection[0];
       this.selectionId = currentNode.id().toString();
+      let nodeValues = this.selectionId.split('||');
+      this.selectionId = nodeValues[0];
 
       const summaryTable: SummaryTableContent[] = [];
 

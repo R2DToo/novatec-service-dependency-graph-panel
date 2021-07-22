@@ -45263,7 +45263,9 @@ function () {
 
   CanvasDrawer.prototype._drawNodeLabel = function (ctx, node) {
     var pos = node.position();
-    var label = node.id(); //const labelPadding = 1;
+    var label = node.id();
+    var nodeValues = label.split('||');
+    label = nodeValues[0]; //const labelPadding = 1;
     // if (this.selectionNeighborhood.empty() || !this.selectionNeighborhood.has(node)) {
     //   if (label.length > 20) {
     //     label = label.substr(0, 7) + '...' + label.slice(-7);
@@ -45932,7 +45934,7 @@ function (_super) {
 
   ServiceDependencyGraph.prototype.updateStatisticTable = function () {
     return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-      var selection, currentNode, summaryTable, className, dataSource, dataSourceData;
+      var selection, currentNode, nodeValues, summaryTable, className, dataSource, dataSourceData;
       return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         switch (_a.label) {
           case 0:
@@ -45943,6 +45945,8 @@ function (_super) {
             this.selectionStatistics = {};
             currentNode = selection[0];
             this.selectionId = currentNode.id().toString();
+            nodeValues = this.selectionId.split('||');
+            this.selectionId = nodeValues[0];
             summaryTable = [];
             className = currentNode.data('className').toString();
             console.log("current node: ", className);
