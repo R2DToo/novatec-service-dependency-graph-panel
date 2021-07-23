@@ -1,7 +1,6 @@
 import CanvasDrawer from 'panel/canvas/graph_canvas';
 import cytoscape, { EdgeSingular, ElementDefinition, NodeSingular } from 'cytoscape';
-import React from 'react';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { PanelController } from '../PanelController';
 import cyCanvas from 'cytoscape-canvas';
 import cola from 'cytoscape-cola';
@@ -430,6 +429,9 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
         <div className="service-dependency-graph">
           <div className="canvas-container" ref={ref => (this.ref = ref)}></div>
           <div className="zoom-button-container">
+            <button className="btn navbar-button width-100" onClick={() => this.componentDidMount()}>
+              <i className="fa fa-refresh"></i>
+            </button>
             <button className="btn navbar-button width-100" onClick={() => this.toggleAnimation()}>
               <i className={this.state.animateButtonClass}></i>
             </button>

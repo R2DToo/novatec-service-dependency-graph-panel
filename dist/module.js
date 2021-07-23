@@ -45638,7 +45638,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 cytoscape_canvas__WEBPACK_IMPORTED_MODULE_4___default()(cytoscape__WEBPACK_IMPORTED_MODULE_2___default.a);
 cytoscape__WEBPACK_IMPORTED_MODULE_2___default.a.use(cytoscape_cola__WEBPACK_IMPORTED_MODULE_5___default.a);
 
@@ -46035,6 +46034,13 @@ function (_super) {
     }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("div", {
       className: "zoom-button-container"
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
+      className: "btn navbar-button width-100",
+      onClick: function onClick() {
+        return _this.componentDidMount();
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
+      className: "fa fa-refresh"
+    })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
       className: "btn navbar-button width-100",
       onClick: function onClick() {
         return _this.toggleAnimation();
