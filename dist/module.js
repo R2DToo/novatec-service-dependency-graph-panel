@@ -45994,7 +45994,7 @@ function (_super) {
           case 4:
             this.summary = summaryTable;
             console.log("Summary Table", this.summary);
-            this.generateDrillDownLink();
+            this.generateDrillDownLink(className);
             _a.label = 5;
 
           case 5:
@@ -46006,11 +46006,12 @@ function (_super) {
     });
   };
 
-  ServiceDependencyGraph.prototype.generateDrillDownLink = function () {
+  ServiceDependencyGraph.prototype.generateDrillDownLink = function (className) {
     var drillDownLink = this.getSettings(false).drillDownLink;
 
     if (drillDownLink !== undefined) {
-      var link = drillDownLink.replace('{}', this.selectionId);
+      var link = drillDownLink.replace('{node}', this.selectionId);
+      link = link.replace('{nodeClass}', className);
       this.resolvedDrillDownLink = this.templateSrv.replace(link);
     }
   };

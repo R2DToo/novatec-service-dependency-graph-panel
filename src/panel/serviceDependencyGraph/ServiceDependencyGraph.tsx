@@ -331,7 +331,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       this.summary = summaryTable;
       console.log("Summary Table", this.summary);
 
-      this.generateDrillDownLink();
+      this.generateDrillDownLink(className);
 
       // this.currentType = currentNode.data('type');
       // const receiving: TableContent[] = [];
@@ -412,10 +412,11 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     }
   }
 
-  generateDrillDownLink() {
+  generateDrillDownLink(className: string) {
     const { drillDownLink } = this.getSettings(false);
     if (drillDownLink !== undefined) {
-      const link = drillDownLink.replace('{}', this.selectionId);
+      var link = drillDownLink.replace('{node}', this.selectionId);
+      link = link.replace('{nodeClass}', className);
       this.resolvedDrillDownLink = this.templateSrv.replace(link);
     }
   }
