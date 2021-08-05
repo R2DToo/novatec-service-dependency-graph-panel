@@ -66,9 +66,9 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
   constructor(props: PanelState) {
     super(props);
 
-    var animateButtonClass = 'fa fa-play-circle';
+    var animateButtonClass = 'navbar-button-fa fa fa-play-circle';
     if (props.animate) {
-      animateButtonClass = 'fa fa-pause-circle';
+      animateButtonClass = 'navbar-button-fa fa fa-pause-circle';
     }
 
     this.state = {
@@ -245,10 +245,10 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
   toggleAnimation() {
     var newValue = !this.state.animate;
-    var animateButtonClass = 'fa fa-play-circle';
+    var animateButtonClass = 'navbar-button-fa fa fa-play-circle';
     if (newValue) {
       this.state.graphCanvas.startAnimation();
-      animateButtonClass = 'fa fa-pause-circle';
+      animateButtonClass = 'navbar-button-fa fa fa-pause-circle';
     } else {
       this.state.graphCanvas.stopAnimation();
     }
@@ -431,22 +431,22 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
           <div className="canvas-container" ref={ref => (this.ref = ref)}></div>
           <div className="zoom-button-container">
             <button className="btn navbar-button width-100" onClick={() => this.componentDidMount()}>
-              <i className="fa fa-refresh"></i>
+              <i className="navbar-button-fa fa fa-refresh"></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.toggleAnimation()}>
               <i className={this.state.animateButtonClass}></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.runLayout()}>
-              <i className="fa fa-sitemap"></i>
+              <i className="navbar-button-fa fa fa-sitemap"></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.fit()}>
-              <i className="fa fa-dot-circle-o"></i>
+              <i className="navbar-button-fa fa fa-dot-circle-o"></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.zoom(+1)}>
-              <i className="fa fa-plus"></i>
+              <i className="navbar-button-fa fa fa-plus"></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.zoom(-1)}>
-              <i className="fa fa-minus"></i>
+              <i className="navbar-button-fa fa fa-minus"></i>
             </button>
           </div>
         </div>

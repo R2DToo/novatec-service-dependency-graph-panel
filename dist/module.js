@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()(_node_modules_css_loader_dist_runtime_cssWithMappingToString_js__WEBPACK_IMPORTED_MODULE_0___default.a);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  z-index: 99; }\n\n.navbar-button {\n  background-color: black;\n  opacity: 1; }\n\n.fa {\n  color: #FEE75C; }\n", "",{"version":3,"sources":["webpack://./panel/serviceDependencyGraph/ServiceDependencyGraph.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,WAAW;EACX,YAAY;EACZ,gBAAgB,EAAE;;AAEpB;EACE,kBAAkB;EAClB,MAAM;EACN,UAAU;EACV,WAAW,EAAE;;AAEf;EACE,uBAAuB;EACvB,UAAU,EAAE;;AAEd;EACE,cAAc,EAAE","sourcesContent":[".graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  z-index: 99; }\n\n.navbar-button {\n  background-color: black;\n  opacity: 1; }\n\n.fa {\n  color: #FEE75C; }\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  z-index: 99; }\n\n.navbar-button {\n  background-color: black;\n  opacity: 1; }\n\n.navbar-button-fa {\n  color: #FEE75C; }\n", "",{"version":3,"sources":["webpack://./panel/serviceDependencyGraph/ServiceDependencyGraph.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,mBAAmB,EAAE;;AAEvB;EACE,WAAW;EACX,YAAY;EACZ,gBAAgB,EAAE;;AAEpB;EACE,kBAAkB;EAClB,MAAM;EACN,UAAU;EACV,WAAW,EAAE;;AAEf;EACE,uBAAuB;EACvB,UAAU,EAAE;;AAEd;EACE,cAAc,EAAE","sourcesContent":[".graph-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: row; }\n\n.canvas-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.zoom-button-container {\n  position: absolute;\n  top: 0;\n  left: 1rem;\n  z-index: 99; }\n\n.navbar-button {\n  background-color: black;\n  opacity: 1; }\n\n.navbar-button-fa {\n  color: #FEE75C; }\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
@@ -45650,10 +45650,10 @@ function (_super) {
     var _this = _super.call(this, props) || this;
 
     _this.initResize = true;
-    var animateButtonClass = 'fa fa-play-circle';
+    var animateButtonClass = 'navbar-button-fa fa fa-play-circle';
 
     if (props.animate) {
-      animateButtonClass = 'fa fa-pause-circle';
+      animateButtonClass = 'navbar-button-fa fa fa-pause-circle';
     }
 
     _this.state = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, props), {
@@ -45864,11 +45864,11 @@ function (_super) {
 
   ServiceDependencyGraph.prototype.toggleAnimation = function () {
     var newValue = !this.state.animate;
-    var animateButtonClass = 'fa fa-play-circle';
+    var animateButtonClass = 'navbar-button-fa fa fa-play-circle';
 
     if (newValue) {
       this.state.graphCanvas.startAnimation();
-      animateButtonClass = 'fa fa-pause-circle';
+      animateButtonClass = 'navbar-button-fa fa fa-pause-circle';
     } else {
       this.state.graphCanvas.stopAnimation();
     }
@@ -46040,7 +46040,7 @@ function (_super) {
         return _this.componentDidMount();
       }
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
-      className: "fa fa-refresh"
+      className: "navbar-button-fa fa fa-refresh"
     })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
       className: "btn navbar-button width-100",
       onClick: function onClick() {
@@ -46054,28 +46054,28 @@ function (_super) {
         return _this.runLayout();
       }
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
-      className: "fa fa-sitemap"
+      className: "navbar-button-fa fa fa-sitemap"
     })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
       className: "btn navbar-button width-100",
       onClick: function onClick() {
         return _this.fit();
       }
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
-      className: "fa fa-dot-circle-o"
+      className: "navbar-button-fa fa fa-dot-circle-o"
     })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
       className: "btn navbar-button width-100",
       onClick: function onClick() {
         return _this.zoom(+1);
       }
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
-      className: "fa fa-plus"
+      className: "navbar-button-fa fa fa-plus"
     })), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("button", {
       className: "btn navbar-button width-100",
       onClick: function onClick() {
         return _this.zoom(-1);
       }
     }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement("i", {
-      className: "fa fa-minus"
+      className: "navbar-button-fa fa fa-minus"
     })))), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(_statistics_Statistics__WEBPACK_IMPORTED_MODULE_7__["Statistics"], {
       show: this.state.showStatistics,
       selectionId: this.selectionId,
