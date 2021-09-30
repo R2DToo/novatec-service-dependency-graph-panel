@@ -39,6 +39,26 @@ export const DefaultSettings: PanelSettings = {
 
   icons: [
     {
+      pattern: 'Agent Client Collector',
+      filename: 'agent',
+    },
+    {
+      pattern: 'Application Service',
+      filename: 'application_svc',
+    },
+    {
+      pattern: 'Image',
+      filename: 'aws_ami',
+    },
+    {
+      pattern: 'Gateway',
+      filename: 'aws_api_gateway',
+    },
+    {
+      pattern: 'AWS Datacenter',
+      filename: 'aws_availzone',
+    },
+    {
       pattern: 'Disk Partition|Disk',
       filename: 'disk',
     },
