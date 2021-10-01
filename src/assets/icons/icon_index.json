@@ -1,5 +1,5 @@
 [
-    "agent",
+  "agent",
 	"appd_node",
 	"appd_tier",
 	"application_generic",
@@ -12,7 +12,7 @@
 	"aws_dynamodb",
 	"aws_ebs_volume",
 	"aws_ec2_compute",
-	"aws_ec2_instance"
+	"aws_ec2_instance",
 	"aws_ec2_vm",
 	"aws_ec2",
 	"aws_elasticip",
@@ -76,7 +76,7 @@
 	"nic",
 	"plugin",
 	"prometheus",
-	"redhat"
+	"redhat",
 	"router",
 	"sap",
 	"search",
