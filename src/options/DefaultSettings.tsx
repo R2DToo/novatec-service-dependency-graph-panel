@@ -43,8 +43,20 @@ export const DefaultSettings: PanelSettings = {
       filename: 'agent',
     },
     {
+      pattern: 'Application',
+      filename: 'application_generic',
+    },
+    {
       pattern: 'Application Service',
       filename: 'application_svc',
+    },
+    {
+      pattern: 'Cluster',
+      filename: 'cluster',
+    },
+    {
+      pattern: 'Datacenter',
+      filename: 'datacenter',
     },
     {
       pattern: 'Image',
@@ -143,6 +155,10 @@ export const DefaultSettings: PanelSettings = {
       filename: 'nic',
     },
     {
+      pattern: 'Storage Device',
+      filename: 'storage',
+    },
+    {
       pattern: 'Windows Server',
       filename: 'windows',
     },
@@ -157,6 +173,34 @@ export const DefaultSettings: PanelSettings = {
     {
       pattern: 'Kubernetes Pod',
       filename: 'k8s-pod',
+    },
+    {
+      pattern: 'Kubernetes Namespace',
+      filename: 'k8s-ns',
+    },
+    {
+      pattern: 'Kubernetes Deployment',
+      filename: 'k8s-deploy',
+    },
+    {
+      pattern: 'Kubernetes Cluster',
+      filename: 'k8s-cluster',
+    },
+    {
+      pattern: 'Kubernetes Node',
+      filename: 'k8s-node',
+    },
+    {
+      pattern: 'Kubernetes DaemonSet|Kubernetes StatefulSet',
+      filename: 'k8s-ds',
+    },
+    {
+      pattern: 'Load Balancer Service',
+      filename: 'loadbalancer',
+    },
+    {
+      pattern: 'F5 BIG-IP',
+      filename: 'loadbalancer',
     },
     {
       pattern: 'Docker Container|Docker Image',
@@ -185,6 +229,54 @@ export const DefaultSettings: PanelSettings = {
     {
       pattern: 'Tag-Based Application Service',
       filename: 'tag',
+    },
+    {
+      pattern: 'VMware vCenter Network',
+      filename: 'nic',
+    },
+    {
+      pattern: 'IP Switch',
+      filename: 'switch',
+    },
+    {
+      pattern: 'ESX Server',
+      filename: 'server',
+    },
+    {
+      pattern: 'Virtual Machine Instance',
+      filename: 'virtual_machine',
+    },
+    {
+      pattern: 'Server Chassis',
+      filename: 'server',
+    },
+    {
+      pattern: 'Switch',
+      filename: 'switch',
+    },
+    {
+      pattern: 'PDU|UPS',
+      filename: 'plugin',
+    },
+    {
+      pattern: 'Business Service',
+      filename: 'application_svc',
+    },
+    {
+      pattern: 'IP Router',
+      filename: 'router',
+    },
+    {
+      pattern: 'MSFT SQL Instance',
+      filename: 'database',
+    },
+    {
+      pattern: 'Web Server|Web Site|HTTP',
+      filename: 'http',
+    },
+    {
+      pattern: 'Router Interface',
+      filename: 'nic',
     },
     {
       pattern: '',
