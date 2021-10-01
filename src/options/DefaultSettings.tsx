@@ -59,10 +59,6 @@ export const DefaultSettings: PanelSettings = {
       filename: 'aws_availzone',
     },
     {
-      pattern: 'Hardware Type',
-      filename: 'hardware_type'
-    },
-    {
       pattern: 'Cloud DataBase',
       filename: 'aws_db'
     },
@@ -101,6 +97,38 @@ export const DefaultSettings: PanelSettings = {
     {
       pattern: 'File System',
       filename: 'aws_volume'
+    },
+    {
+      pattern: 'AWS Datacenter',
+      filename: 'aws_ec2_vm'
+    },
+    {
+      pattern: 'Storage Mapping',
+      filename: 'storage_volume'
+    },
+    {
+      pattern: 'VNIC Endpoint',
+      filename: 'aws_nic'
+    },
+    {
+      pattern: 'DNS Name',
+      filename: 'aws_ec2_instance'
+    },
+    {
+      pattern: 'Subnet Endpoint',
+      filename: 'aws_internetgw'
+    },
+    {
+      pattern: 'Cloud Mgmt Network Interface',
+      filename: 'aws_nic'
+    },
+    {
+      pattern: 'MySQL Instance',
+      filename: 'database'
+    },
+    {
+      pattern: 'Docker Engine',
+      filename: 'docker_engine'
     },
     {
       pattern: 'Disk Partition|Disk',
