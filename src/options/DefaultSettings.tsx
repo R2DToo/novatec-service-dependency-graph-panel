@@ -51,20 +51,60 @@ export const DefaultSettings: PanelSettings = {
       filename: 'aws_ami',
     },
     {
-      pattern: 'Gateway',
+      pattern: 'Cloud Gateway',
       filename: 'aws_api_gateway',
     },
     {
-      pattern: 'AWS Datacenter',
+      pattern: 'Availability Zone',
       filename: 'aws_availzone',
+    },
+    {
+      pattern: 'Hardware Type',
+      filename: 'hardware_type'
+    },
+    {
+      pattern: 'Cloud DataBase',
+      filename: 'aws_db'
+    },
+    {
+      pattern: 'Cloud LB IPAddress',
+      filename: 'aws_elasticip'
+    },
+    {
+      pattern: 'Cloud Load Balancer',
+      filename: 'aws_elb'
+    },
+    {
+      pattern: 'Cloud Function',
+      filename: 'aws_lambda'
+    },
+    {
+      pattern: 'Cloud Object Storage',
+      filename: 'aws_s3'
+    },
+    {
+      pattern: 'Compute Security Group',
+      filename: 'aws_securitygroup'
+    },
+    {
+      pattern: 'Cloud Service Account',
+      filename: 'aws_service_account'
+    },
+    {
+      pattern: 'Cloud Network',
+      filename: 'aws_vpc'
+    },
+    {
+      pattern: 'Virtual Machine Instance',
+      filename: 'aws_ec2_compute'
+    },
+    {
+      pattern: 'File System',
+      filename: 'aws_volume'
     },
     {
       pattern: 'Disk Partition|Disk',
       filename: 'disk',
-    },
-    {
-      pattern: 'File System',
-      filename: 'aws_filesystem',
     },
     {
       pattern: 'IP Address',
