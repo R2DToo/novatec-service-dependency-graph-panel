@@ -115,7 +115,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
     cy.on('render cyCanvas.resize', () => {
       graphCanvas.repaint(true);
-      console.log("render resize");
+      console.log('render resize');
     });
     cy.on('select', 'node', () => this.onSelectionChange());
     cy.on('unselect', 'node', () => this.onSelectionChange());
@@ -316,20 +316,20 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       const summaryTable: SummaryTableContent[] = [];
 
       var className = currentNode.data('className').toString();
-      console.log("current node: ", className);
+      console.log('current node: ', className);
       if (typeof currentNode.data('className') !== 'undefined') {
-        summaryTable.push({name:"Class",value:className});
+        summaryTable.push({ name: 'Class', value: className });
       } else {
         let dataSource = await this.datasourceSrv.get(this.state.settings.datasourceName);
         let dataSourceData = await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
-        summaryTable.push({name:"Class",value:dataSourceData.classType});
-        summaryTable.push({name:"Environment",value:dataSourceData.environment});
-        summaryTable.push({name:"Support Group",value:dataSourceData.support_group});
-        summaryTable.push({name:"In Maintinance",value:dataSourceData.maintenance_schedule});
+        summaryTable.push({ name: 'Class', value: dataSourceData.classType });
+        summaryTable.push({ name: 'Environment', value: dataSourceData.environment });
+        summaryTable.push({ name: 'Support Group', value: dataSourceData.support_group });
+        summaryTable.push({ name: 'In Maintinance', value: dataSourceData.maintenance_schedule });
       }
 
       this.summary = summaryTable;
-      console.log("Summary Table", this.summary);
+      console.log('Summary Table', this.summary);
 
       this.generateDrillDownLink(className);
 

@@ -41,9 +41,8 @@ export const Statistics: React.FC<StatisticsProps> = ({
       );
     }
 
-    const summaryTd =
-      (summary) ? (
-        summary.map(value => {
+    const summaryTd = summary
+      ? summary.map(value => {
           return (
             <tr>
               <td className="table--td--selection table--td">{value.name}</td>
@@ -51,14 +50,11 @@ export const Statistics: React.FC<StatisticsProps> = ({
             </tr>
           );
         })
-      ) : null;
-
+      : null;
 
     statistics = (
       <div className="statistics">
-        <div className="header--selection">
-          {selectionId}
-        </div>
+        <div className="header--selection">{selectionId}</div>
 
         <div className="secondHeader--selection">{drilldownLink}</div>
         <table className="table--selection">

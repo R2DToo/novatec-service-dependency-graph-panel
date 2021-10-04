@@ -214,14 +214,14 @@ export interface AlertTableContent {
   id: string;
   summary: string;
   severity: string;
-};
+}
 
 export interface SummaryTableContent {
   name: string;
   value: string;
-};
+}
 
 export interface ChangeTableContent {
   id: string;
   summary: string;
-};
+}
