@@ -72,75 +72,75 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Cloud DataBase',
-      filename: 'aws_db'
+      filename: 'aws_db',
     },
     {
       pattern: 'Cloud LB IPAddress',
-      filename: 'aws_elasticip'
+      filename: 'aws_elasticip',
     },
     {
       pattern: 'Cloud Load Balancer',
-      filename: 'aws_elb'
+      filename: 'aws_elb',
     },
     {
       pattern: 'Cloud Function',
-      filename: 'aws_lambda'
+      filename: 'aws_lambda',
     },
     {
       pattern: 'Cloud Object Storage',
-      filename: 'aws_s3'
+      filename: 'aws_s3',
     },
     {
       pattern: 'Compute Security Group',
-      filename: 'aws_securitygroup'
+      filename: 'aws_securitygroup',
     },
     {
       pattern: 'Cloud Service Account',
-      filename: 'aws_service_account'
+      filename: 'aws_service_account',
     },
     {
       pattern: 'Cloud Network',
-      filename: 'aws_vpc'
+      filename: 'aws_vpc',
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'aws_ec2_compute'
+      filename: 'aws_ec2_compute',
     },
     {
       pattern: 'File System',
-      filename: 'aws_volume'
+      filename: 'aws_volume',
     },
     {
       pattern: 'AWS Datacenter',
-      filename: 'aws_ec2_vm'
+      filename: 'aws_ec2_vm',
     },
     {
       pattern: 'Storage Mapping',
-      filename: 'storage_volume'
+      filename: 'storage_volume',
     },
     {
       pattern: 'VNIC Endpoint',
-      filename: 'aws_nic'
+      filename: 'aws_nic',
     },
     {
       pattern: 'DNS Name',
-      filename: 'aws_ec2_instance'
+      filename: 'aws_ec2_instance',
     },
     {
       pattern: 'Subnet Endpoint',
-      filename: 'aws_internetgw'
+      filename: 'aws_internetgw',
     },
     {
       pattern: 'Cloud Mgmt Network Interface',
-      filename: 'aws_nic'
+      filename: 'aws_nic',
     },
     {
       pattern: 'MySQL Instance',
-      filename: 'database'
+      filename: 'database',
     },
     {
       pattern: 'Docker Engine',
-      filename: 'docker_engine'
+      filename: 'docker_engine',
     },
     {
       pattern: 'Disk Partition|Disk',
@@ -277,6 +277,34 @@ export const DefaultSettings: PanelSettings = {
     {
       pattern: 'Router Interface',
       filename: 'nic',
+    },
+    {
+      pattern: 'Virtual Machine Instance',
+      filename: 'azure_vm_instance',
+    },
+    {
+      pattern: 'Resource Group',
+      filename: 'azure_resourcegroup',
+    },
+    {
+      pattern: 'File System',
+      filename: 'azure_disk',
+    },
+    {
+      pattern: 'Cloud Mgmt Network Interface',
+      filename: 'azure_network',
+    },
+    {
+      pattern: 'Hardware Type',
+      filename: 'azure_hardware_type',
+    },
+    {
+      pattern: 'Cloud Service Account',
+      filename: 'azure_subscription',
+    },
+    {
+      pattern: 'Availability Zone',
+      filename: 'azure_availability_set',
     },
     {
       pattern: '',
