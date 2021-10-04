@@ -32,9 +32,9 @@ export const DefaultSettings: PanelSettings = {
   showBaselines: false,
 
   style: {
-    healthyColor: 'rgb(87, 148, 242)',
+    healthyColor: 'rgb(242, 72, 91)',
     dangerColor: 'rgb(196, 22, 42)',
-    noDataColor: 'rgb(123, 123, 138)',
+    noDataColor: 'rgb(114, 190, 104)',
   },
 
   icons: [
