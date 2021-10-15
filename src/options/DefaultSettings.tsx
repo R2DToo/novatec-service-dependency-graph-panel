@@ -40,15 +40,15 @@ export const DefaultSettings: PanelSettings = {
   icons: [
     {
       pattern: 'Agent Client Collector',
-      filename: 'agent',
+      filename: 'extension',
     },
     {
       pattern: 'Application',
-      filename: 'application_generic',
+      filename: 'application',
     },
     {
       pattern: 'Application Service',
-      filename: 'application_svc',
+      filename: 'app_services',
     },
     {
       pattern: 'Cluster',
@@ -60,87 +60,87 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Image',
-      filename: 'aws_ami',
+      filename: 'image',
     },
     {
       pattern: 'Cloud Gateway',
-      filename: 'aws_api_gateway',
+      filename: 'gateway',
     },
     {
       pattern: 'Availability Zone',
-      filename: 'aws_availzone',
+      filename: 'availability_set',
     },
     {
       pattern: 'Cloud DataBase',
-      filename: 'aws_db',
+      filename: 'db_sql',
     },
     {
       pattern: 'Cloud LB IPAddress',
-      filename: 'aws_elasticip',
+      filename: 'ip',
     },
     {
       pattern: 'Cloud Load Balancer',
-      filename: 'aws_elb',
+      filename: 'loadbalancer',
     },
     {
       pattern: 'Cloud Function',
-      filename: 'aws_lambda',
+      filename: 'azure_function',
     },
     {
       pattern: 'Cloud Object Storage',
-      filename: 'aws_s3',
+      filename: 'storage',
     },
     {
       pattern: 'Compute Security Group',
-      filename: 'aws_securitygroup',
+      filename: 'security_group',
     },
     {
       pattern: 'Cloud Service Account',
-      filename: 'aws_service_account',
+      filename: 'role',
     },
     {
       pattern: 'Cloud Network',
-      filename: 'aws_vpc',
+      filename: 'cloud',
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'aws_ec2_compute',
+      filename: 'virtual_machine',
     },
     {
       pattern: 'File System',
-      filename: 'aws_volume',
+      filename: 'folder',
     },
     {
       pattern: 'AWS Datacenter',
-      filename: 'aws_ec2_vm',
+      filename: 'datacenter',
     },
     {
       pattern: 'Storage Mapping',
-      filename: 'storage_volume',
+      filename: 'storage',
     },
     {
       pattern: 'VNIC Endpoint',
-      filename: 'aws_nic',
+      filename: 'network_virtual',
     },
     {
       pattern: 'DNS Name',
-      filename: 'aws_ec2_instance',
+      filename: 'dns',
     },
     {
       pattern: 'Subnet Endpoint',
-      filename: 'aws_internetgw',
+      filename: 'route',
     },
     {
       pattern: 'Cloud Mgmt Network Interface',
-      filename: 'aws_nic',
+      filename: 'network_interface_card',
     },
     {
       pattern: 'MySQL Instance',
-      filename: 'database',
+      filename: 'mysql_db',
     },
     {
       pattern: 'Docker Engine',
-      filename: 'docker_engine',
+      filename: 'engine',
     },
     {
       pattern: 'Disk Partition|Disk',
@@ -152,7 +152,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Network Adapter',
-      filename: 'nic',
+      filename: 'network_interface_card',
     },
     {
       pattern: 'Storage Device',
@@ -196,15 +196,15 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Load Balancer Service',
-      filename: 'loadbalancer',
+      filename: 'loadbalance_service',
     },
     {
       pattern: 'F5 BIG-IP',
-      filename: 'loadbalancer',
+      filename: 'f5_loadbalancer',
     },
     {
       pattern: 'Docker Container|Docker Image',
-      filename: 'docker_container',
+      filename: 'docker',
     },
     {
       pattern: 'Manual Endpoint',
@@ -216,7 +216,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'ServiceNow Application',
-      filename: 'application_svc',
+      filename: 'application',
     },
     {
       pattern: 'ServiceNow MID Server',
@@ -232,11 +232,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'VMware vCenter Network',
-      filename: 'nic',
-    },
-    {
-      pattern: 'IP Switch',
-      filename: 'switch',
+      filename: 'network_interface_card',
     },
     {
       pattern: 'ESX Server',
@@ -251,16 +247,12 @@ export const DefaultSettings: PanelSettings = {
       filename: 'server',
     },
     {
-      pattern: 'Switch',
+      pattern: 'Switch|IP Switch',
       filename: 'switch',
     },
     {
-      pattern: 'PDU|UPS',
-      filename: 'plugin',
-    },
-    {
       pattern: 'Business Service',
-      filename: 'application_svc',
+      filename: 'business_svc',
     },
     {
       pattern: 'IP Router',
@@ -268,43 +260,43 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'MSFT SQL Instance',
-      filename: 'database',
+      filename: 'db_sql',
     },
     {
-      pattern: 'Web Server|Web Site|HTTP',
+      pattern: 'Web Server|HTTP',
       filename: 'http',
     },
     {
+      pattern: 'Web Site',
+      filename: 'website',
+    },
+    {
       pattern: 'Router Interface',
-      filename: 'nic',
+      filename: 'network_interface_card',
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'azure_vm_instance',
+      filename: 'virtual_machine',
     },
     {
       pattern: 'Resource Group',
-      filename: 'azure_resourcegroup',
+      filename: 'resource_group2',
     },
     {
       pattern: 'File System',
-      filename: 'azure_disk',
+      filename: 'disk',
     },
     {
       pattern: 'Cloud Mgmt Network Interface',
-      filename: 'azure_network',
-    },
-    {
-      pattern: 'Hardware Type',
-      filename: 'azure_hardware_type',
+      filename: 'network',
     },
     {
       pattern: 'Cloud Service Account',
-      filename: 'azure_subscription',
+      filename: 'subscription',
     },
     {
       pattern: 'Availability Zone',
-      filename: 'azure_availability_set',
+      filename: 'availability_set',
     },
     {
       pattern: '',

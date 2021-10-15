@@ -80,7 +80,7 @@ export class TypeaheadTextField extends React.PureComponent<Props, State> {
     if (inputLength === 0 || inputValue === undefined) {
       return [];
     }
-    return this.getColumnNames().filter(columnName => columnName.toLowerCase().startsWith(inputValue));
+    return this.getColumnNames().filter((columnName) => columnName.toLowerCase().startsWith(inputValue));
   };
 
   onSuggestionsFetchRequested = (value: any) => {
@@ -120,6 +120,7 @@ export class TypeaheadTextField extends React.PureComponent<Props, State> {
         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
         getSuggestionValue={this.getSuggestionValue}
         renderSuggestion={this.renderSuggestion}
+        // @ts-ignore
         inputProps={inputProps}
         theme={{
           input: 'input-small gf-form-input width-100',

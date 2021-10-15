@@ -158,7 +158,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       this.runLayout();
     } else {
       if (cyNodes.length > 0) {
-        _.each(updatedNodes, node => {
+        _.each(updatedNodes, (node) => {
           node.lock();
         });
         this.runLayout(true);
@@ -168,7 +168,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
   }
 
   _transformNodes(nodes: IntGraphNode[]): ElementDefinition[] {
-    const cyNodes: ElementDefinition[] = _.map(nodes, node => {
+    const cyNodes: ElementDefinition[] = _.map(nodes, (node) => {
       const result: ElementDefinition = {
         group: 'nodes',
         data: {
@@ -187,7 +187,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
   }
 
   _transformEdges(edges: IntGraphEdge[]): ElementDefinition[] {
-    const cyEdges: ElementDefinition[] = _.map(edges, edge => {
+    const cyEdges: ElementDefinition[] = _.map(edges, (edge) => {
       const cyEdge: ElementDefinition = {
         group: 'edges',
         data: {
@@ -215,7 +215,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
       if (cyNode) {
         element.data(cyNode.data);
-        _.remove(inputArray, n => n.data.id === cyNode.data.id);
+        _.remove(inputArray, (n) => n.data.id === cyNode.data.id);
         elements.push(element);
       } else {
         element.remove();
@@ -263,7 +263,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     const options = {
       ...layoutOptions,
 
-      stop: function() {
+      stop: function () {
         if (unlockNodes) {
           that.unlockNodes();
         }
@@ -428,7 +428,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     return (
       <div className="graph-container">
         <div className="service-dependency-graph">
-          <div className="canvas-container" ref={ref => (this.ref = ref)}></div>
+          <div className="canvas-container" ref={(ref) => (this.ref = ref)}></div>
           <div className="zoom-button-container">
             <button className="btn navbar-button width-100" onClick={() => this.componentDidMount()}>
               <i className="navbar-button-fa fa fa-refresh"></i>

@@ -35,16 +35,16 @@ export const Statistics: React.FC<StatisticsProps> = ({
     var drilldownLink = <div></div>;
     if (resolvedDrillDownLink && resolvedDrillDownLink.length > 0) {
       drilldownLink = (
-        <a target="_blank" href={resolvedDrillDownLink}>
+        <a target="_blank" rel="noreferrer" href={resolvedDrillDownLink}>
           <i className="fa fa-paper-plane-o margin"></i>
         </a>
       );
     }
 
     const summaryTd = summary
-      ? summary.map(value => {
+      ? summary.map((value, index) => {
           return (
-            <tr>
+            <tr key={index}>
               <td className="table--td--selection table--td">{value.name}</td>
               <td className="table--td--selection table--td">{value.value}</td>
             </tr>

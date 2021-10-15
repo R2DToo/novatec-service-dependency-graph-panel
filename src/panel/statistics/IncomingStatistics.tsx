@@ -15,8 +15,8 @@ export const NodeStatistics = (receiving: TableContent[]) => {
                 <th className="table--th--selectionSmall">Requests</th>
                 <th className="table--th--selectionSmall">Error Rate</th>
               </tr>
-              {receiving.map((node: TableContent) => (
-                <tr>
+              {receiving.map((node: TableContent, index) => (
+                <tr key={index}>
                   <td className="table--td--selection" title="{{node.name}}">
                     {node.name}
                   </td>
