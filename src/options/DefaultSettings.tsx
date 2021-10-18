@@ -40,15 +40,15 @@ export const DefaultSettings: PanelSettings = {
   icons: [
     {
       pattern: 'Agent Client Collector',
-      filename: 'extension',
+      filename: 'agent',
     },
     {
       pattern: 'Application',
-      filename: 'application',
+      filename: 'app_service',
     },
     {
       pattern: 'Application Service',
-      filename: 'app_services',
+      filename: 'app_service',
     },
     {
       pattern: 'Cluster',
@@ -84,7 +84,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Cloud Function',
-      filename: 'azure_function',
+      filename: 'cloud_function',
     },
     {
       pattern: 'Cloud Object Storage',
@@ -92,11 +92,11 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Compute Security Group',
-      filename: 'security_group',
+      filename: 'group',
     },
     {
       pattern: 'Cloud Service Account',
-      filename: 'role',
+      filename: 'Account',
     },
     {
       pattern: 'Cloud Network',
@@ -104,11 +104,11 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'virtual_machine',
+      filename: 'virtual_machine2',
     },
     {
       pattern: 'File System',
-      filename: 'folder',
+      filename: 'directory',
     },
     {
       pattern: 'AWS Datacenter',
@@ -120,7 +120,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'VNIC Endpoint',
-      filename: 'network_virtual',
+      filename: 'virtual_network',
     },
     {
       pattern: 'DNS Name',
@@ -132,15 +132,15 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Cloud Mgmt Network Interface',
-      filename: 'network_interface_card',
+      filename: 'network_interface',
     },
     {
       pattern: 'MySQL Instance',
-      filename: 'mysql_db',
+      filename: 'db_mysql',
     },
     {
       pattern: 'Docker Engine',
-      filename: 'engine',
+      filename: 'docker_engine',
     },
     {
       pattern: 'Disk Partition|Disk',
@@ -152,7 +152,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Network Adapter',
-      filename: 'network_interface_card',
+      filename: 'network_interface',
     },
     {
       pattern: 'Storage Device',
@@ -196,7 +196,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Load Balancer Service',
-      filename: 'loadbalance_service',
+      filename: 'loadbalance_svc',
     },
     {
       pattern: 'F5 BIG-IP',
@@ -204,23 +204,19 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Docker Container|Docker Image',
-      filename: 'docker',
-    },
-    {
-      pattern: 'Manual Endpoint',
-      filename: 'manual_entrypoint',
+      filename: 'docker_container',
     },
     {
       pattern: 'ServiceNow Application Component',
-      filename: 'application_generic',
+      filename: 'app_service',
     },
     {
       pattern: 'ServiceNow Application',
-      filename: 'application',
+      filename: 'app_service',
     },
     {
       pattern: 'ServiceNow MID Server',
-      filename: 'gear',
+      filename: 'server2',
     },
     {
       pattern: 'Kubernetes Volume',
@@ -232,7 +228,7 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'VMware vCenter Network',
-      filename: 'network_interface_card',
+      filename: 'network_interface',
     },
     {
       pattern: 'ESX Server',
@@ -240,11 +236,11 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'virtual_machine',
+      filename: 'virtual_machine2',
     },
     {
       pattern: 'Server Chassis',
-      filename: 'server',
+      filename: 'server2',
     },
     {
       pattern: 'Switch|IP Switch',
@@ -263,24 +259,28 @@ export const DefaultSettings: PanelSettings = {
       filename: 'db_sql',
     },
     {
-      pattern: 'Web Server|HTTP',
-      filename: 'http',
+      pattern: 'Web Server',
+      filename: 'web_server',
+    },
+    {
+      pattern: 'HTTP',
+      filename: 'web',
     },
     {
       pattern: 'Web Site',
-      filename: 'website',
+      filename: 'web_site',
     },
     {
       pattern: 'Router Interface',
-      filename: 'network_interface_card',
+      filename: 'network_interface',
     },
     {
       pattern: 'Virtual Machine Instance',
-      filename: 'virtual_machine',
+      filename: 'virtual_machine2',
     },
     {
       pattern: 'Resource Group',
-      filename: 'resource_group2',
+      filename: 'resource_group',
     },
     {
       pattern: 'File System',
@@ -288,11 +288,11 @@ export const DefaultSettings: PanelSettings = {
     },
     {
       pattern: 'Cloud Mgmt Network Interface',
-      filename: 'network',
+      filename: 'network_interface',
     },
     {
       pattern: 'Cloud Service Account',
-      filename: 'subscription',
+      filename: 'Account',
     },
     {
       pattern: 'Availability Zone',
@@ -323,7 +323,8 @@ export const DefaultSettings: PanelSettings = {
     },
   ],
 
-  drillDownLink: '',
+  drillDownLink:
+    '/d/AEOITnWnz?var-ci={node}&var-ciClasses={nodeClass}&var-childTopo=$childTopo&var-parentTopo=$parentTopo',
   timeFormat: 'm',
   datasourceName: 'servicenow-optimiz-plugin',
 };
