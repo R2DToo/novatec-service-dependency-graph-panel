@@ -31,6 +31,7 @@ class GraphGenerator {
     }
 
     var className = dataElements[0].data.className;
+    var rate_in = dataElements[0].data.rate_in;
 
     const internalNode =
       _.some(dataElements, ['type', GraphDataType.INTERNAL]) ||
@@ -47,6 +48,7 @@ class GraphGenerator {
         type: nodeType,
         metrics,
         className: className,
+        rate_in: rate_in,
       },
     };
 

@@ -6,9 +6,6 @@
     "strictNullChecks": false,
     "rootDir": "./src",
     "baseUrl": "./src",
-    "typeRoots": [
-      "./node_modules/@types", 
-      "./typings"
-    ]
+    "typeRoots": ["./node_modules/@types", "./typings"]
   }
 }

@@ -38,9 +38,17 @@ export interface DataMapping {
 }
 
 export interface PanelStyleSettings {
-  healthyColor: string;
-  dangerColor: string;
-  noDataColor: string;
+  //healthyColor: string;
+  // dangerColor: string;
+  // noDataColor: string;
+  alertColor: string;
+  //Color options for showing impact status
+  imOkColor: string;
+  imWarningColor: string;
+  imMinorColor: string;
+  imMajorColor: string;
+  imCriticalColor: string;
+  appearanceSwitch: boolean;
 }
 
 export interface IconResource {
@@ -113,6 +121,7 @@ export interface IntGraphNodeData {
   external_type?: string;
   label?: string;
   className?: string;
+  rate_in?: number;
 }
 
 export interface IntGraphMetrics {

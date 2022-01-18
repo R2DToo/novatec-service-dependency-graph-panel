@@ -17,6 +17,7 @@ import {
   AlertTableContent,
   SummaryTableContent,
   ChangeTableContent,
+  IntGraphMetrics,
 } from 'types';
 import { TemplateSrv, getTemplateSrv, getDataSourceSrv } from '@grafana/runtime';
 import './ServiceDependencyGraph.css';
@@ -318,10 +319,19 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       var className = currentNode.data('className').toString();
       var classValues = className.split('||');
       className = classValues[0];
-      console.log('current node: ', className);
+
+      const metrics: IntGraphMetrics = currentNode.data('metrics');
+      // requestCount is for impact severity
+      const requestCount = _.defaultTo(metrics.rate, -1);
+      // errorCount is for alerts
+      const errorCount = _.defaultTo(metrics.error_rate, 0);
+
       if (typeof currentNode.data('className') !== 'undefined') {
         summaryTable.push({ name: 'Class', value: className });
+        summaryTable.push({ name: 'Impact', value: requestCount.toString() });
+        summaryTable.push({ name: '# of Alerts', value: errorCount.toString() });
       } else {
+        //Old summary table method
         let dataSource = await this.datasourceSrv.get(this.state.settings.datasourceName);
         let dataSourceData = await dataSource.snowConnection.getTopologyCISummary(this.selectionId);
         summaryTable.push({ name: 'Class', value: dataSourceData.classType });
@@ -331,7 +341,6 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       }
 
       this.summary = summaryTable;
-      console.log('Summary Table', this.summary);
 
       this.generateDrillDownLink(classValues[1], nodeValues[1]);
 
@@ -432,11 +441,11 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
         <div className="service-dependency-graph">
           <div className="canvas-container" ref={(ref) => (this.ref = ref)}></div>
           <div className="zoom-button-container">
-            <button className="btn navbar-button width-100" onClick={() => this.componentDidMount()}>
-              <i className="navbar-button-fa fa fa-refresh"></i>
-            </button>
             <button className="btn navbar-button width-100" onClick={() => this.toggleAnimation()}>
               <i className={this.state.animateButtonClass}></i>
+            </button>
+            <button className="btn navbar-button width-100" onClick={() => this.componentDidMount()}>
+              <i className="navbar-button-fa fa fa-refresh"></i>
             </button>
             <button className="btn navbar-button width-100" onClick={() => this.runLayout()}>
               <i className="navbar-button-fa fa fa-sitemap"></i>

@@ -190,7 +190,7 @@ export default class CanvasDrawer {
     return false;
   }
 
-  repaint(forceRepaint = false) {
+  repaint(forceRepaint = true) {
     if (!forceRepaint && this._skipFrame()) {
       return;
     }
@@ -271,10 +271,12 @@ export default class CanvasDrawer {
     const cy = this.cytoscape;
 
     for (const edge of edges) {
-      const sourcePoint = edge.sourceEndpoint();
-      const targetPoint = edge.targetEndpoint();
-      this._drawEdgeLine(ctx, edge, sourcePoint, targetPoint);
-      this._drawEdgeParticles(ctx, edge, sourcePoint, targetPoint, now);
+      try {
+        const sourcePoint = edge.sourceEndpoint();
+        const targetPoint = edge.targetEndpoint();
+        this._drawEdgeLine(ctx, edge, sourcePoint, targetPoint);
+        this._drawEdgeParticles(ctx, edge, sourcePoint, targetPoint, now);
+      } catch {}
     }
 
     const { showConnectionStats } = this.controller.getSettings(true);
@@ -415,7 +417,7 @@ export default class CanvasDrawer {
       index--;
     }
 
-    const dangerColor = this.controller.getSettings(true).style.dangerColor;
+    const dangerColor = this.controller.getSettings(true).style.imCriticalColor;
     ctx.fillStyle = dangerColor;
     ctx.fill();
   }
@@ -485,32 +487,52 @@ export default class CanvasDrawer {
     const type = node.data('type');
     const metrics: IntGraphMetrics = node.data('metrics');
 
+    // requestCount is for impact severity
     const requestCount = _.defaultTo(metrics.rate, -1);
+    // errorCount is for alerts
     const errorCount = _.defaultTo(metrics.error_rate, 0);
     const responseTime = _.defaultTo(metrics.response_time, -1);
     const threshold = _.defaultTo(metrics.threshold, -1);
+    const { appearanceSwitch } = this.controller.getSettings(true).style;
 
-    var unknownPct;
-    var errorPct;
-    var healthyPct;
-    if (requestCount < 0) {
-      healthyPct = 0;
-      errorPct = 0;
-      unknownPct = 1;
-    } else {
-      if (errorCount <= 0) {
-        errorPct = 0.0;
+    let alertPct = 0;
+    let okPct = 0;
+    let warningPct = 0;
+    let minorPct = 0;
+    let majorPct = 0;
+    let criticalPct = 0;
+    if (appearanceSwitch === false) {
+      if (errorCount > 0) {
+        alertPct = 1;
       } else {
-        errorPct = (1.0 / requestCount) * errorCount;
+        okPct = 1;
       }
-      healthyPct = 1.0 - errorPct;
-      unknownPct = 0;
+    } else {
+      switch (requestCount) {
+        case 5:
+          okPct = 1;
+          break;
+        case 4:
+          warningPct = 1;
+          break;
+        case 3:
+          minorPct = 1;
+          break;
+        case 2:
+          majorPct = 1;
+          break;
+        case 1:
+          criticalPct = 1;
+          break;
+        default:
+          okPct = 1;
+          break;
+      }
     }
-
     // drawing the donut
     // this._drawDonut(ctx, node, 15, 5, 0.5, [errorPct, unknownPct, healthyPct]);
     //Making Donut larger. The middle number determines thickness
-    this._drawDonut(ctx, node, 25, 5, 0.5, [errorPct, unknownPct, healthyPct]);
+    this._drawDonut(ctx, node, 25, 5, 0.5, [alertPct, okPct, warningPct, minorPct, majorPct, criticalPct]);
 
     // drawing the baseline status
     const { showBaselines } = this.controller.getSettings(true);
@@ -733,8 +755,9 @@ export default class CanvasDrawer {
     ctx.closePath();
     ctx.fillStyle = 'white';
     ctx.fill();
-    const { healthyColor, dangerColor, noDataColor } = this.controller.getSettings(true).style;
-    const colors = [dangerColor, noDataColor, healthyColor];
+    const { alertColor, imOkColor, imWarningColor, imMinorColor, imMajorColor, imCriticalColor } =
+      this.controller.getSettings(true).style;
+    const colors = [alertColor, imOkColor, imWarningColor, imMinorColor, imMajorColor, imCriticalColor];
     for (let i = 0; i < percentages.length; i++) {
       let arc = this._drawArc(ctx, currentArc, cX, cY, radius, percentages[i], colors[i]);
       currentArc += arc;

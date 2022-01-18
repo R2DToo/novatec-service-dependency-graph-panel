@@ -10,7 +10,7 @@ export const DefaultSettings: PanelSettings = {
 
     responseTimeColumn: 'response-time',
     requestRateColumn: 'req_rate',
-    errorRateColumn: 'error-rate',
+    errorRateColumn: 'error_rate',
     responseTimeOutgoingColumn: 'response-time-out',
     requestRateOutgoingColumn: 'request-rate-out',
     errorRateOutgoingColumn: 'error-rate-out',
@@ -32,9 +32,13 @@ export const DefaultSettings: PanelSettings = {
   showBaselines: false,
 
   style: {
-    healthyColor: 'rgb(242, 72, 91)',
-    dangerColor: 'rgb(196, 22, 42)',
-    noDataColor: 'rgb(114, 190, 104)',
+    alertColor: 'rgb(242, 72, 91)',
+    imOkColor: 'rgb(87, 242, 135)',
+    imWarningColor: 'rgb(88, 101, 242)',
+    imMinorColor: 'rgb(254, 231, 92)',
+    imMajorColor: 'rgb(250, 100, 0)',
+    imCriticalColor: 'rgb(237, 66, 69)',
+    appearanceSwitch: false,
   },
 
   icons: [

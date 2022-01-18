@@ -3,6 +3,7 @@ import { PanelSettings } from '../types';
 import { TypeaheadTextField } from './TypeAheadTextfield/TypeaheadTextfield';
 import { IconMapping } from './iconMapping/IconMapping';
 import { DummyDataSwitch } from './dummyDataSwitch/DummyDataSwitch';
+import { AppearanceSwitch } from './AppearanceSwitch/AppearanceSwitch';
 import { DefaultSettings } from './DefaultSettings';
 
 export const optionsBuilder = (builder: PanelOptionsEditorBuilder<PanelSettings>) => {
@@ -210,25 +211,65 @@ export const optionsBuilder = (builder: PanelOptionsEditorBuilder<PanelSettings>
       })
 
       //Appearance
-      .addColorPicker({
-        path: 'style.healthyColor',
-        name: 'Healthy Color',
+      .addCustomEditor({
+        id: 'appearanceSwitch',
+        path: 'style.appearanceSwitch',
+        name: 'Colors Based On',
+        editor: AppearanceSwitch,
         category: ['Appearance'],
-        defaultValue: DefaultSettings.style.healthyColor,
+        defaultValue: DefaultSettings.style.appearanceSwitch,
+      })
+      .addColorPicker({
+        path: 'style.alertColor',
+        name: 'Alert Color',
+        category: ['Appearance'],
+        defaultValue: DefaultSettings.style.alertColor,
       })
 
-      .addColorPicker({
-        path: 'style.dangerColor',
-        name: 'Danger Color',
-        category: ['Appearance'],
-        defaultValue: DefaultSettings.style.dangerColor,
-      })
+      // .addColorPicker({
+      //   path: 'style.dangerColor',
+      //   name: 'Danger Color',
+      //   category: ['Appearance'],
+      //   defaultValue: DefaultSettings.style.dangerColor,
+      // })
 
+      // .addColorPicker({
+      //   path: 'style.noDataColor',
+      //   name: 'No Data Color',
+      //   category: ['Appearance'],
+      //   defaultValue: DefaultSettings.style.noDataColor,
+      // })
+
+      //Impact Appearance
       .addColorPicker({
-        path: 'style.noDataColor',
-        name: 'No Data Color',
+        path: 'style.imOkColor',
+        name: 'OK/Clear Impact Color',
         category: ['Appearance'],
-        defaultValue: DefaultSettings.style.noDataColor,
+        defaultValue: DefaultSettings.style.imOkColor,
+      })
+      .addColorPicker({
+        path: 'style.imWarningColor',
+        name: 'Warning Impact Color',
+        category: ['Appearance'],
+        defaultValue: DefaultSettings.style.imWarningColor,
+      })
+      .addColorPicker({
+        path: 'style.imMinorColor',
+        name: 'Minor Impact Color',
+        category: ['Appearance'],
+        defaultValue: DefaultSettings.style.imMinorColor,
+      })
+      .addColorPicker({
+        path: 'style.imMajorColor',
+        name: 'Major Impact Color',
+        category: ['Appearance'],
+        defaultValue: DefaultSettings.style.imMajorColor,
+      })
+      .addColorPicker({
+        path: 'style.imCriticalColor',
+        name: 'Critical Impact Color',
+        category: ['Appearance'],
+        defaultValue: DefaultSettings.style.imCriticalColor,
       })
 
       //Icon Mapping
