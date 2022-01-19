@@ -1,28 +1,32 @@
 .graph-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
 }
 
 .canvas-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .zoom-button-container {
-    position: absolute;
-    top: 0;
-    left: 1rem;
-    z-index: 99;
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  z-index: 99;
+}
+
+.zoom-button-container div:nth-child(2) {
+  padding: 0;
 }
 
 .navbar-button {
-    background-color: rgb(0, 0, 0);
-    opacity: 1;
+  background-color: rgb(0, 0, 0);
+  opacity: 1;
 }
 
-.navbar-button-fa  {
-    color: #FEE75C;
+.navbar-button-fa {
+  color: #fee75c;
 }

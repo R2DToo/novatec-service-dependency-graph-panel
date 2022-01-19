@@ -20,6 +20,7 @@ import {
   IntGraphMetrics,
 } from 'types';
 import { TemplateSrv, getTemplateSrv, getDataSourceSrv } from '@grafana/runtime';
+import { CollapsableSection } from '@grafana/ui';
 import './ServiceDependencyGraph.css';
 
 interface PanelState {
@@ -125,10 +126,11 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
       this.zoom(1.5);
       this.toggleAnimation();
     });
-    this.setState({
+    this.setState((prevState) => ({
+      ...prevState,
       cy: cy,
       graphCanvas: graphCanvas,
-    });
+    }));
     graphCanvas.start();
   }
 
@@ -432,6 +434,30 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
     }
   }
 
+  filterNodes(appearanceSwitch: boolean, impact: number) {
+    var elements: any = this.state.cy.elements();
+    console.log('elements: ', elements);
+    for (let i = 0; i < elements.length; i++) {
+      var element = elements[i];
+      var data = element['_private'].data;
+      if (appearanceSwitch) {
+        if (impact === 5) {
+          if (data.metrics.rate === 5 || data.metrics.rate === 0) {
+            element.remove();
+          }
+        } else {
+          if (data.metrics.rate === impact) {
+            element.remove();
+          }
+        }
+      } else {
+        if (data.metrics.error_rate > 0) {
+          element.remove();
+        }
+      }
+    }
+  }
+
   render() {
     if (this.state.cy !== undefined) {
       this._updateGraph(this.props.data);
@@ -459,6 +485,49 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
             <button className="btn navbar-button width-100" onClick={() => this.zoom(-1)}>
               <i className="navbar-button-fa fa fa-minus"></i>
             </button>
+            <CollapsableSection label="" isOpen={false}>
+              {this.state.controller.getSettings(true).style.appearanceSwitch ? (
+                <>
+                  <button className="btn navbar-button width-100" onClick={() => this.filterNodes(true, 5)}>
+                    <i
+                      className="navbar-button-fa fa fa-filter"
+                      style={{ color: this.state.controller.getSettings(true).style.imOkColor }}
+                    ></i>
+                  </button>
+                  <button className="btn navbar-button width-100" onClick={() => this.filterNodes(true, 4)}>
+                    <i
+                      className="navbar-button-fa fa fa-filter"
+                      style={{ color: this.state.controller.getSettings(true).style.imWarningColor }}
+                    ></i>
+                  </button>
+                  <button className="btn navbar-button width-100" onClick={() => this.filterNodes(true, 3)}>
+                    <i
+                      className="navbar-button-fa fa fa-filter"
+                      style={{ color: this.state.controller.getSettings(true).style.imMinorColor }}
+                    ></i>
+                  </button>
+                  <button className="btn navbar-button width-100" onClick={() => this.filterNodes(true, 2)}>
+                    <i
+                      className="navbar-button-fa fa fa-filter"
+                      style={{ color: this.state.controller.getSettings(true).style.imMajorColor }}
+                    ></i>
+                  </button>
+                  <button className="btn navbar-button width-100" onClick={() => this.filterNodes(true, 1)}>
+                    <i
+                      className="navbar-button-fa fa fa-filter"
+                      style={{ color: this.state.controller.getSettings(true).style.imCriticalColor }}
+                    ></i>
+                  </button>
+                </>
+              ) : (
+                <button className="btn navbar-button width-100" onClick={() => this.filterNodes(false, 0)}>
+                  <i
+                    className="navbar-button-fa fa fa-filter"
+                    style={{ color: this.state.controller.getSettings(true).style.alertColor }}
+                  ></i>
+                </button>
+              )}
+            </CollapsableSection>
           </div>
         </div>
         <Statistics
