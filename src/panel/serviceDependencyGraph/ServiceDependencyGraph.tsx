@@ -22,6 +22,7 @@ import {
 import { TemplateSrv, getTemplateSrv, getDataSourceSrv } from '@grafana/runtime';
 import { CollapsableSection } from '@grafana/ui';
 import './ServiceDependencyGraph.css';
+import { impactNumToString } from '../statistics/utils/Utils';
 
 interface PanelState {
   zoom: number | undefined;
@@ -330,7 +331,7 @@ export class ServiceDependencyGraph extends PureComponent<PanelState, PanelState
 
       if (typeof currentNode.data('className') !== 'undefined') {
         summaryTable.push({ name: 'Class', value: className });
-        summaryTable.push({ name: 'Impact', value: requestCount.toString() });
+        summaryTable.push({ name: 'Impact Severity', value: impactNumToString(requestCount) });
         summaryTable.push({ name: '# of Alerts', value: errorCount.toString() });
       } else {
         //Old summary table method

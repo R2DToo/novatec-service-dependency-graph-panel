@@ -45,7 +45,7 @@ export const Statistics: React.FC<StatisticsProps> = ({
       ? summary.map((value, index) => {
           return (
             <tr key={index}>
-              <td className="table--td--selection table--td">{value.name}</td>
+              <td className="table--td--selection table--td table--td--key">{value.name}</td>
               <td className="table--td--selection table--td">{value.value}</td>
             </tr>
           );

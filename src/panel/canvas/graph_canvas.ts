@@ -5,6 +5,7 @@ import ParticleEngine from './particle_engine';
 import { CyCanvas, Particle, EnGraphNodeType, Particles, IntGraphMetrics, ScaleValue, DrawContext } from '../../types';
 import humanFormat from 'human-format';
 import assetUtils from '../asset_utils';
+import { impactNumToString } from '../statistics/utils/Utils';
 
 const scaleValues: ScaleValue[] = [
   { unit: 'ms', factor: 1 },
@@ -580,31 +581,28 @@ export default class CanvasDrawer {
   }
 
   _drawNodeStatistics(ctx: CanvasRenderingContext2D, node: cytoscape.NodeSingular) {
-    const { timeFormat } = this.controller.getSettings(true);
+    // const { timeFormat } = this.controller.getSettings(true);
     const lines: string[] = [];
 
     const metrics: IntGraphMetrics = node.data('metrics');
     const requestCount = _.defaultTo(metrics.rate, -1);
     const errorCount = _.defaultTo(metrics.error_rate, -1);
-    const responseTime = _.defaultTo(metrics.response_time, -1);
+    // const responseTime = _.defaultTo(metrics.response_time, -1);
 
-    const timeScale = new humanFormat.Scale(this._getTimeScale(timeFormat));
+    // const timeScale = new humanFormat.Scale(this._getTimeScale(timeFormat));
 
     if (requestCount >= 0) {
-      const decimals = requestCount >= 1000 ? 1 : 0;
-      if (humanFormat(parseFloat(requestCount.toString()), { decimals }) > 0) {
-        lines.push('Alerts Present');
-      }
+      lines.push('Impact Severity: ' + impactNumToString(requestCount));
     }
     if (errorCount >= 0) {
       const decimals = errorCount >= 1000 ? 1 : 0;
-      lines.push('Errors: ' + humanFormat(errorCount, { decimals }));
+      lines.push('Active Alerts: ' + humanFormat(errorCount, { decimals }));
     }
-    if (responseTime >= 0) {
-      const decimals = responseTime >= 1000 ? 1 : 0;
+    // if (responseTime >= 0) {
+    //   const decimals = responseTime >= 1000 ? 1 : 0;
 
-      lines.push('Avg. Resp. Time: ' + humanFormat(responseTime, { scale: timeScale, decimals }));
-    }
+    //   lines.push('Avg. Resp. Time: ' + humanFormat(responseTime, { scale: timeScale, decimals }));
+    // }
 
     const pos = node.position();
     const fontSize = 8;

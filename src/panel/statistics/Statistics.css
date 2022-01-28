@@ -1,23 +1,86 @@
 .margin {
-    margin: 10px;
+  margin: 10px;
 }
 
 .statistics {
-    flex-basis: 0;
-    transition: flex-basis 500ms ease-in-out;
-    overflow-y: scroll;
+  flex-basis: 0;
+  transition: flex-basis 500ms ease-in-out;
+  overflow-y: scroll;
+}
 
-  }
+.statistics.show {
+  position: absolute;
+  flex-basis: 30rem;
+  padding-left: 0.5%;
+  height: 250px !important;
+  width: 375px !important;
+  right: 0;
+  z-index: 999;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
 
-  .statistics.show {
-    position: absolute;
-    flex-basis: 30rem;
-    padding-left: 0.5%;
-    height: 250px !important;
-    width: 375px !important;
-    right: 0;
-    z-index: 999;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+.table--selection {
+  width: 99%;
+  table-layout: fixed;
+  border: 2px solid rgb(40, 107, 199);
+}
 
-  }
+.table--selection th,
+.table--selection td {
+  padding: 3px 5px;
+}
+
+.table--selection tr {
+  border-bottom: 2px solid #161719;
+}
+
+.table--td--selection {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table--th--selectionSmall {
+  width: 5.5rem;
+}
+
+.table--th--selectionMedium {
+  width: 10rem;
+}
+
+.table--selection--head {
+  background-color: #28282a;
+  border-top: 2px solid #161719;
+  color: #33b5e5;
+}
+
+.table--th,
+.table--td {
+  border: 2px solid rgb(40, 107, 199);
+}
+
+.header--selection {
+  font-size: 1.25em;
+  text-align: center;
+  border-bottom: 2px solid #161719;
+  font-weight: 500;
+  color: #84c9fb;
+}
+
+.secondHeader--selection {
+  font-size: 1.2em;
+  text-align: center;
+  padding-bottom: 0.5rem;
+}
+
+.statistics {
+  flex-basis: 0;
+  transition: flex-basis 250ms ease-in-out;
+  overflow-y: scroll;
+}
+
+.statistics.show {
+  flex-basis: 30rem;
+  padding-left: 0.5%;
+}

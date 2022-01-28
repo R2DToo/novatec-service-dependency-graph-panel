@@ -2,7 +2,7 @@ import React from 'react';
 import { IntTableHeader } from '../../types';
 import { TableContent } from 'types';
 import SortableTable from './SortableTable';
-import roundPercentageToDecimal from './utils/Utils';
+import { roundPercentageToDecimal } from './utils/Utils';
 
 interface NodeStatisticsProps {
   nodeList: TableContent[];
